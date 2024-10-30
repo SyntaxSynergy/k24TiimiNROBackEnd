@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuotteet</title>
+</head>
+<body>
+    <h1>Tuotelistaus</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>Tyyppi</th>
+            <th>Väri</th>
+            <th>Koko</th>
+            <th>Hinta</th>
+            <th>Valmistaja</th>
+        </tr>   
+        <tr th:each="tuote : ${tuotteet}">
+            <td th:text="${tuote.tyyppi}"></td>
+            <td th:text="${tuote.vari}"></td>
+            <td th:text="${tuote.koko}"></td>
+            <td th:text="${tuote.hinta}"></td>
+            <td th:text="${tuote.valmistaja}"></td>
+        </tr>
+    </table>
+</body>
+</html>
