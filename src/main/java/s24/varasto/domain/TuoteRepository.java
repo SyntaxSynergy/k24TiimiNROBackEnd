@@ -5,7 +5,8 @@ import java.util.List;
 
 public interface TuoteRepository extends CrudRepository<Tuote, Long> {
     Tuote findByTyyppi(String tyyppi);
-    List<Tuote> findByValmistaja(String valmistaja);    
+    List<Tuote> findByValmistaja(Valmistaja valmistaja);
+
 
 
 }

@@ -1,10 +1,6 @@
 package s24.varasto.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
+import jakarta.persistence.*;
 
 @Entity
 public class Tuote {
@@ -17,18 +13,26 @@ private String tyyppi;
 private String vari;
 private String koko;
 private Double hinta;
-private String valmistaja;
 
+
+@ManyToOne
+@JoinColumn(name = "valmistajaId")
+private Valmistaja valmistaja;
+
+@Column(name = "valmistaja_nimi") 
+private String valmistajaNimi;
 
 public Tuote () {}
 
-public Tuote (String tyyppi,String vari,String koko,Double hinta,String valmistaja ){
+public Tuote (String tyyppi,String vari,String koko,Double hinta,Valmistaja valmistaja ){
 super();
 this.tyyppi=tyyppi;
 this.vari=vari;
 this.koko=koko;
 this.hinta=hinta;
 this.valmistaja=valmistaja;
+this.valmistajaNimi = valmistaja.getValmistajaNimi();
+
 }
 
 
@@ -64,18 +68,29 @@ public void setHinta(Double hinta) {
     this.hinta = hinta;
 }
 
-public String getValmistaja() {
+public Valmistaja getValmistaja() {
     return valmistaja;
 }
 
-public void setValmistaja(String valmistaja) {
+public void setValmistaja(Valmistaja valmistaja) {
     this.valmistaja = valmistaja;
+    this.valmistajaNimi = valmistaja.getValmistajaNimi(); 
 }
 
+
+
 @Override
-	public String toString() {
-	return "Tuote [TuoteId=" + tuoteId + ", Tyyppi=" + tyyppi + ", Väri= "+vari+
-     ", Koko="+ koko+ ", Hinta="+ hinta +", Valmistaja="+valmistaja+"]";
-	}
+public String toString() {
+    return "Tuote [TuoteId=" + tuoteId +
+           ", Tyyppi=" + tyyppi +
+           ", Väri=" + vari +
+           ", Koko=" + koko +
+           ", Hinta=" + hinta +
+           ", ValmistajaId=" + (valmistaja != null ? valmistaja.getValmistajaId() : "Ei saatavilla") +
+           ", ValmistajanNimi=" + (valmistajaNimi != null ? valmistajaNimi : "Ei saatavilla") +
+           "]";
+}
+
+
 
 }
