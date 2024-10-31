@@ -45,6 +45,6 @@ public void setValmistajaNimi(String valmistajaNimi) {
 
 @Override
 	public String toString() {
-		return "Valmistaja [Valmistajaid=" + valmistajaId + ", Valmistaja=" + valmistajaNimi+ "]";
+		return valmistajaNimi;
 	}
 }
