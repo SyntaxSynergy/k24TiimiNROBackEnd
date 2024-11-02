@@ -7,7 +7,7 @@ public class Tuote {
     
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
-private long tuoteId;
+private Long tuoteId;
 
 private String tyyppi;
 private String vari;
@@ -35,6 +35,13 @@ this.valmistajaNimi = valmistaja.getValmistajaNimi();
 
 }
 
+public Long getTuoteId() {
+    return tuoteId;
+}
+
+public void setTuoteId(Long tuoteId) {
+    this.tuoteId = tuoteId;
+}
 
 public String getTyyppi() {
     return tyyppi;

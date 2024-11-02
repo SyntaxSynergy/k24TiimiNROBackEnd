@@ -11,7 +11,7 @@ import jakarta.persistence.*;
 public class Valmistaja {
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
-private long valmistajaId;
+private Long valmistajaId;
 private String valmistajaNimi;
 
   @JsonIgnore
@@ -26,7 +26,7 @@ public Valmistaja(String valmistajaNimi){
     this.valmistajaNimi=valmistajaNimi;
 
 }
-public long getValmistajaId() {
+public Long getValmistajaId() {
     return valmistajaId;
 }
 
