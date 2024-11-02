@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+xmlns:th="http://www.thymeleaf.org">
 <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
 <head>
     <meta charset="UTF-8">
@@ -11,7 +10,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <body>
     <h1>Tuotelistaus</h1>
     <td>
-        <a class="btn btn-success" href="/uusituote">Add new book</a>
+        <a class="btn btn-success" href="/uusituote">Lisää tuote</a>
     </td>
     <table class="table table-striped" style="padding:1%; margin:auto">
         <tr>
@@ -20,6 +19,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
             <th>Koko</th>
             <th>Hinta</th>
             <th>Valmistaja</th>
+            <th>Toiminnot</th>
         </tr>   
         <tr th:each="tuote : ${tuotteet}">
             <td th:text="${tuote.tyyppi}"></td>
@@ -27,6 +27,11 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
             <td th:text="${tuote.koko}"></td>
             <td th:text="${tuote.hinta}"></td>
             <td th:text="${tuote.valmistaja}"></td>
+            <td>
+                <a class="btn btn-warning" th:href="@{/edit/{id}(id=${tuote.tuoteId})}">Muokkaa</a>
+                <a class="btn btn-danger" th:href="@{/delete/{id}(id=${tuote.tuoteId})}">Poista</a>
+            <td>
+            
         </tr>
     </table>
 </body>

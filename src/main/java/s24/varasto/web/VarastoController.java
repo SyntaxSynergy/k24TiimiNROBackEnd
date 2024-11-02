@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import s24.varasto.domain.Tuote;
@@ -41,4 +42,17 @@ public class VarastoController {
         return "redirect:tuotteet";
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteTuote(@PathVariable("id") Long tuoteId, Model model) {
+        tuoteRepository.deleteById(tuoteId);
+        return "redirect:../tuotteet";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editTuote(@PathVariable("id") Long tuoteId, Model model) {
+        model.addAttribute("tuote", tuoteRepository.findById(tuoteId));
+        model.addAttribute("valmistajat", vrepository.findAll());
+
+        return "muokkaatuote";
+    }
 }

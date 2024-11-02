@@ -2,19 +2,23 @@
 <html lang="en" 
 xmlns:th="http://www.thymeleaf.org">
 <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uusi tuote</title>
+    <title>Muokkaa tuote</title>
 </head>
 <body>
-    <h1>Uuden tuotteen tiedot</h1>
-    <form th:object="${tuote}" th:action="@{save}" action="#" method="post">
+    <h1>Tuotteen tietojen muokkaus</h1>
+    <form th:object="${tuote}" th:action="@{../save}" action="#" method="post">
+        <label for="id"></label>
+        <input type="hidden" id="id" th:field="*{tuoteId}" readonly="readonly" />
+        
         <label for="tyyppi">Tyyppi</label>
-        <input type="text" id="title" th:field="*{tyyppi}" />
+        <input type="text" th:field="*{tyyppi}" />
 
         <label for="vari">Väri</label>
-        <input type="text" id="author" th:field="*{vari}" />
+        <input type="text" th:field="*{vari}" />
 
         <label for="koko">Koko</label>
         <input type="text" th:field="*{koko}" />
@@ -26,9 +30,9 @@ xmlns:th="http://www.thymeleaf.org">
         <select th:field="*{valmistaja}">
             <option th:each="valmistaja : ${valmistajat}" th:value="${valmistaja.valmistajaId}" th:text="${valmistaja.valmistajaNimi}"></option>
         </select>
-        <input type="submit" value="Save"></input>
-        <a href="/tuotteet">Takaisin tuotelistaukseen</a>
-        
+
+        <input type="submit" class="btn btn-success" value="Save"></input>
     </form>
+    <a href="/tuotteet">Takaisin tuotelistaukseen</a>
 </body>
 </html>
