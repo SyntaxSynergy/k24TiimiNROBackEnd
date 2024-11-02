@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" 
+xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uusi valmistaja</title>
+</head>
+<body>
+    <h1>Uuden valmistajan tiedot</h1>
+    <form th:object="${valmistaja}" th:action="@{saveval}" action="#" method="post">
+        <label for="valmistajaNimi">Valmistajan nimi</label>
+        <input type="text" id="valmistajaNimi" th:field="*{valmistajaNimi}" />
+
+        <input type="submit" value="Save"></input>
+        <a href="/tuotteet">Takaisin tuotelistaukseen</a>
+        
+    </form>
+</body>
+</html>
