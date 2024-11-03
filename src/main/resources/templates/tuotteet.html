@@ -8,34 +8,32 @@ xmlns:th="http://www.thymeleaf.org">
     <title>Tuotteet</title>
 </head>
 <body>
-    <h1>Tuotelistaus</h1>
-    <td>
-        <a class="btn btn-success" href="/uusituote">Lisää tuote</a>
-    </td>
-    <td>
-        <a class="btn btn-success" href="/uusivalmistaja">Lisää valmistaja</a>
-    </td>
-    <table class="table table-striped" style="padding:1%; margin:auto">
-        <tr>
-            <th>Nimi</th>
-            <th>Väri</th>
-            <th>Koko</th>
-            <th>Hinta</th>
-            <th>Valmistaja</th>
-            <th>Toiminnot</th>
-        </tr>   
-        <tr th:each="tuote : ${tuotteet}">
-            <td th:text="${tuote.tyyppi}"></td>
-            <td th:text="${tuote.vari}"></td>
-            <td th:text="${tuote.koko}"></td>
-            <td th:text="${tuote.hinta}"></td>
-            <td th:text="${tuote.valmistaja}"></td>
-            <td>
-                <a class="btn btn-warning" th:href="@{/edit/{id}(id=${tuote.tuoteId})}">Muokkaa</a>
-                <a class="btn btn-danger" th:href="@{/delete/{id}(id=${tuote.tuoteId})}">Poista</a>
-            <td>
-            
-        </tr>
-    </table>
+    <div style="display: flex; justify-content: space-between; align-items: center; padding-right: 5%; padding-left: 5%; padding-top: 5%;">
+        <h1>Tuotelistaus</h1>
+        <div>
+            <a class="btn btn-success" href="/uusituote">Lisää tuote</a>
+            <a class="btn btn-success" href="/uusivalmistaja">Lisää valmistaja</a>
+        </div>
+    </div>
+    <div style="padding-left: 5%; padding-right: 5%; padding-top: 2%;">
+        <table class="table table-striped" style="margin: 0 auto;">
+            <tr>
+                <th>Nimi</th>
+                <th>Väri</th>
+                <th>Koko</th>
+                <th>Hinta</th>
+                <th>Valmistaja</th>
+                <th>Toiminnot</th>
+            </tr>   
+            <tr th:each="tuote : ${tuotteet}">
+                <td th:text="${tuote.tyyppi}"></td>
+                <td th:text="${tuote.vari}"></td>
+                <td th:text="${tuote.koko}"></td>
+                <td th:text="${tuote.hinta}"></td>
+                <td th:text="${tuote.valmistaja}"></td>
+                <td><a class="btn btn-warning" th:href="@{/edit/{id}(id=${tuote.tuoteId})}">Muokkaa</a> <a class="btn btn-danger" th:href="@{/delete/{id}(id=${tuote.tuoteId})}">Poista</a></td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>
