@@ -1,6 +1,7 @@
 package s24.varasto.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +28,8 @@ public class VarastoController {
         return "tuotteet";
     }
 
-    @GetMapping("/uusituote")
+    @GetMapping("/uusituote") 
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String uusiTuote(Model model) {
         model.addAttribute("tuote", new Tuote());
         model.addAttribute("valmistajat", vrepository.findAll());
@@ -37,6 +39,7 @@ public class VarastoController {
     }
 
     @GetMapping("/uusivalmistaja")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String uusiValmistaja(Model model) {
         model.addAttribute("valmistaja", new Valmistaja());
         //localhost:8080/uusival
@@ -45,6 +48,7 @@ public class VarastoController {
     }
 
     @PostMapping("/saveval")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String saveValmistaja(Valmistaja valmistaja) {
         vrepository.save(valmistaja);
 
@@ -52,6 +56,7 @@ public class VarastoController {
     }
 
     @PostMapping("/save")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String save(Tuote tuote) {
         tuoteRepository.save(tuote);
 
@@ -59,12 +64,14 @@ public class VarastoController {
     }
 
     @GetMapping("/delete/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteTuote(@PathVariable("id") Long tuoteId, Model model) {
         tuoteRepository.deleteById(tuoteId);
         return "redirect:../tuotteet";
     }
 
     @GetMapping("/edit/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String editTuote(@PathVariable("id") Long tuoteId, Model model) {
         model.addAttribute("tuote", tuoteRepository.findById(tuoteId));
         model.addAttribute("valmistajat", vrepository.findAll());
