@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import s24.varasto.domain.Tuote;
 import s24.varasto.domain.TuoteRepository;
@@ -20,6 +21,11 @@ public class VarastoController {
 
     @Autowired
     private ValmistajaRepository vrepository;
+
+     @RequestMapping(value="/login")
+    public String login() {	
+    return "login";
+     }	
 
     @GetMapping("/tuotteet")
     public String tuotelistaus(Model model) {
@@ -78,4 +84,6 @@ public class VarastoController {
 
         return "muokkaatuote";
     }
+
+    
 }

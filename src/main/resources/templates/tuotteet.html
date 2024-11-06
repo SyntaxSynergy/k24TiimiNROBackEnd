@@ -10,7 +10,7 @@ xmlns:th="http://www.thymeleaf.org">
 <body>
     <div style="display: flex; justify-content: space-between; align-items: center; padding-right: 5%; padding-left: 5%; padding-top: 5%;">
         <h1>Tuotelistaus</h1>
-        <div>
+        <div sec:authorize="hasAuthority('ADMIN')">
             <a class="btn btn-success" href="/uusituote">Lisää tuote</a>
             <a class="btn btn-success" href="/uusivalmistaja">Lisää valmistaja</a>
         </div>
@@ -23,7 +23,7 @@ xmlns:th="http://www.thymeleaf.org">
                 <th>Koko</th>
                 <th>Hinta</th>
                 <th>Valmistaja</th>
-                <th>Toiminnot</th>
+                <th sec:authorize="hasAuthority('ADMIN')">Toiminnot</th>
             </tr>   
             <tr th:each="tuote : ${tuotteet}">
                 <td th:text="${tuote.tyyppi}"></td>
@@ -31,9 +31,17 @@ xmlns:th="http://www.thymeleaf.org">
                 <td th:text="${tuote.koko}"></td>
                 <td th:text="${tuote.hinta}"></td>
                 <td th:text="${tuote.valmistaja}"></td>
-                <td><a class="btn btn-warning" th:href="@{/edit/{id}(id=${tuote.tuoteId})}">Muokkaa</a> <a class="btn btn-danger" th:href="@{/delete/{id}(id=${tuote.tuoteId})}">Poista</a></td>
+                <td sec:authorize="hasAuthority('ADMIN')">
+                    <a class="btn btn-warning" th:href="@{/edit/{id}(id=${tuote.tuoteId})}">Muokkaa</a>
+                    <a class="btn btn-danger" th:href="@{/delete/{id}(id=${tuote.tuoteId})}">Poista</a>
+                </td>    
             </tr>
         </table>
+        <div style="display: flex; justify-content: center; padding:50px">
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+            </form>
+        </div>
     </div>
 </body>
 </html>
