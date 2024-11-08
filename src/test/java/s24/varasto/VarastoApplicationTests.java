@@ -6,16 +6,21 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import s24.varasto.web.VarastoController;
+import s24.varasto.web.VarastoRestController;
 
 @SpringBootTest
 class VarastoApplicationTests {
 
 	@Autowired
-	private VarastoController controller;
+	private VarastoController varastocontroller;
+
+	@Autowired
+	private VarastoRestController varastoRestController;
 
 	@Test
 	void contextLoads() throws Exception{
-		assertThat(controller).isNotNull();
+		assertThat(varastocontroller).isNotNull();
+		assertThat(varastoRestController).isNotNull();
 	}
 
 }
