@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uusi valmistaja</title>
+</head>
+
+<body>
+    <div
+        style="display: flex; justify-content: space-between; align-items: center; padding-right: 5%; padding-left: 5%; padding-top: 5%;">
+        <div>
+            <h1>Lisää valmistaja</h1>
+            <form th:object="${valmistaja}" th:action="@{saveval}" action="#" method="post">
+                <label for="valmistajaNimi">Valmistajan nimi</label>
+                <input type="text" id="valmistajaNimi" th:field="*{valmistajaNimi}" />
+
+                <input type="submit" value="Save"></input>
+                <a href="/tuotteet">Takaisin tuotelistaukseen</a>
+        </div>
+        <div>
+            <a class="btn btn-danger" href="/deleteEmptyvalmistajat">Poista käyttämättömät valmistajat</a>
+        </div>
+    </div>
+    <div style="padding-left: 5%; padding-right: 5%; padding-top: 2%;">
+        <h2>Valmistajat</h2>
+        <table class="table table-striped" style="margin: 0 auto;">
+            <thead>
+                <tr>
+                    <th>Valmistaja</th>
+                    <th>Tuotteita</th>
+                    <th>Toiminnot</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="valmistaja : ${valmistajat}">
+                    <td th:text="${valmistaja.valmistajaNimi}"></td>
+                    <td th:text="${valmistaja.tuotteet.size()}"></td>
+                    <td sec:authorize="hasAuthority('ADMIN')">
+                        <a class="btn btn-danger"
+                            th:href="@{/deletevalmistaja/{id}(id=${valmistaja.valmistajaId})}">Poista</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </form>
+</body>
+
+</html>

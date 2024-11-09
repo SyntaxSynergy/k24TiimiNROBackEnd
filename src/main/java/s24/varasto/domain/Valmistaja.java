@@ -41,6 +41,9 @@ public String getValmistajaNimi() {
 public void setValmistajaNimi(String valmistajaNimi) {
     this.valmistajaNimi = valmistajaNimi;
 }
+public List<Tuote> getTuotteet() {
+    return tuotteet;
+}
 
 
 @Override

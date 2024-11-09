@@ -1,5 +1,7 @@
 package s24.varasto.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -44,13 +46,14 @@ public class VarastoController {
         return "uusituote";
     }
 
-    @GetMapping("/uusivalmistaja")
+    @GetMapping("/valmistajat")
     @PreAuthorize("hasAuthority('ADMIN')")
     public String uusiValmistaja(Model model) {
         model.addAttribute("valmistaja", new Valmistaja());
+        model.addAttribute("valmistajat", vrepository.findAll());
         //localhost:8080/uusival
 
-        return "uusivalmistaja";
+        return "valmistajat";
     }
 
     @PostMapping("/saveval")
@@ -75,6 +78,26 @@ public class VarastoController {
         tuoteRepository.deleteById(tuoteId);
         return "redirect:../tuotteet";
     }
+
+    @GetMapping("/deletevalmistaja/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String deleteValmistaja(@PathVariable("id") Long valmistajaId, Model model) {
+        vrepository.deleteById(valmistajaId);
+        return "redirect:../valmistajat";
+    }
+
+    @GetMapping("/deleteEmptyvalmistajat")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String deleteEmptyValmistajat() {
+        List<Valmistaja> valmistajat = (List<Valmistaja>) vrepository.findAll();
+        for (Valmistaja valmistaja : valmistajat) {
+            if (valmistaja.getTuotteet() == null || valmistaja.getTuotteet().isEmpty()) {
+                vrepository.delete(valmistaja);
+            }
+        }
+        return "redirect:/valmistajat";
+    }
+
 
     @GetMapping("/edit/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
