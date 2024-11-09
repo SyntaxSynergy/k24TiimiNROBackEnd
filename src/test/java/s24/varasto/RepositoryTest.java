@@ -38,4 +38,12 @@ public class RepositoryTest {
     Long tuoteId = tuote.getTuoteId();
     tuoteRepository.deleteById(tuoteId);
     }
+
+    @Test
+    public void deleteValmistajaFromDatabase() {
+    Valmistaja valmistaja = new Valmistaja("Kissanpaivat");
+    valmistaja = valmistajaRepository.save(valmistaja);
+    Long valmistajaId = valmistaja.getValmistajaId();
+    valmistajaRepository.deleteById(valmistajaId);
+    }
 }
