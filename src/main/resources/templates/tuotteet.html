@@ -6,6 +6,17 @@ xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tuotteet</title>
+
+    <script>
+   
+        function confirmDelete(event) {
+            event.preventDefault();
+            var confirmation = confirm("Haluatko varmasti poistaa tämän tuotteen?");
+            if (confirmation) {
+                window.location.href = event.target.href; // Siirtyy poistolinkkiin, jos vahvistettu
+            }
+        }
+    </script>
 </head>
 <body>
     <div style="display: flex; justify-content: space-between; align-items: center; padding-right: 5%; padding-left: 5%; padding-top: 5%;">
@@ -35,7 +46,7 @@ xmlns:th="http://www.thymeleaf.org">
                 <td th:text="${tuote.valmistaja}"></td>
                 <td sec:authorize="hasAuthority('ADMIN')">
                     <a class="btn btn-warning" th:href="@{/edit/{id}(id=${tuote.tuoteId})}">Muokkaa</a>
-                    <a class="btn btn-danger" th:href="@{/delete/{id}(id=${tuote.tuoteId})}">Poista</a>
+                    <a class="btn btn-danger" href="#" th:href="@{/delete/{id}(id=${tuote.tuoteId})}" onclick="confirmDelete(event)">Poista</a>
                 </td>    
             </tr>
         </table>
@@ -45,5 +56,7 @@ xmlns:th="http://www.thymeleaf.org">
             </form>
         </div>
     </div>
+
+    
 </body>
 </html>
