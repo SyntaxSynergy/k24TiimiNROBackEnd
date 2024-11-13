@@ -19,6 +19,7 @@ xmlns:th="http://www.thymeleaf.org">
         <table class="table table-striped" style="margin: 0 auto;">
             <tr>
                 <th>Nimi</th>
+                <th>Tyyppi</th>
                 <th>Väri</th>
                 <th>Koko</th>
                 <th>Hinta</th>
@@ -26,7 +27,8 @@ xmlns:th="http://www.thymeleaf.org">
                 <th sec:authorize="hasAuthority('ADMIN')">Toiminnot</th>
             </tr>   
             <tr th:each="tuote : ${tuotteet}">
-                <td th:text="${tuote.tyyppi}"></td>
+                <td th:text="${tuote.nimi}"></td>
+                <td th:text="${tuote.tyyppi.tyyppiNimi}"></td>
                 <td th:text="${tuote.vari}"></td>
                 <td th:text="${tuote.koko}"></td>
                 <td th:text="${tuote.hinta}"></td>

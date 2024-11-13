@@ -10,14 +10,22 @@ xmlns:th="http://www.thymeleaf.org">
 <body>
     <h1>Uuden tuotteen tiedot</h1>
     <form th:object="${tuote}" th:action="@{save}" action="#" method="post">
+        <label for="tyyppi">Nimi</label>
+        <input type="text" id="title" th:field="*{nimi}" />
         <label for="tyyppi">Tyyppi</label>
-        <input type="text" id="title" th:field="*{tyyppi}" />
+        <select th:field="*{tyyppi}">
+            <option th:each="tyyppi : ${tuotetyypit}" 
+                    th:value="${tyyppi.tyyppiId}" 
+                    th:text="${tyyppi.tyyppiNimi}"></option>
+        </select>
 
         <label for="vari">Väri</label>
         <input type="text" id="author" th:field="*{vari}" />
 
         <label for="koko">Koko</label>
-        <input type="text" th:field="*{koko}" />
+        <select th:field="*{koko}">
+            <option th:each="koko : ${koot}" th:value="${koko}" th:text="${koko}"></option>
+        </select>
 
         <label for="hinta">Hinta</label>
         <input type="text" th:field="*{hinta}" />

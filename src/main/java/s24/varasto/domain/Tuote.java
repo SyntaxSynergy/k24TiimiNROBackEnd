@@ -9,11 +9,13 @@ public class Tuote {
 @GeneratedValue(strategy = GenerationType.AUTO)
 private Long tuoteId;
 
-private String tyyppi;
+private String nimi;
 private String vari;
-private String koko;
 private Double hinta;
 
+@ManyToOne
+@JoinColumn(name = "tyyppi_id", nullable = false)
+private TuoteTyyppi tyyppi;
 
 @ManyToOne
 @JoinColumn(name = "valmistajaId")
@@ -22,16 +24,20 @@ private Valmistaja valmistaja;
 @Column(name = "valmistaja_nimi") 
 private String valmistajaNimi;
 
+@Enumerated(EnumType.STRING)
+private Koko koko;
+
 public Tuote () {}
 
-public Tuote (String tyyppi,String vari,String koko,Double hinta,Valmistaja valmistaja ){
+public Tuote (String nimi,TuoteTyyppi tyyppi,String vari,Double hinta,Valmistaja valmistaja,Koko koko ){
 super();
+this.nimi=nimi;
 this.tyyppi=tyyppi;
 this.vari=vari;
-this.koko=koko;
 this.hinta=hinta;
 this.valmistaja=valmistaja;
 this.valmistajaNimi = valmistaja.getValmistajaNimi();
+this.koko=koko;
 
 }
 
@@ -43,11 +49,19 @@ public void setTuoteId(Long tuoteId) {
     this.tuoteId = tuoteId;
 }
 
-public String getTyyppi() {
+public String getNimi() {
+    return nimi;
+}
+
+public void setNimi(String nimi) {
+    this.nimi = nimi;
+}
+
+public TuoteTyyppi  getTyyppi() {
     return tyyppi;
 }
 
-public void setTyyppi(String tyyppi) {
+public void setTyyppi(TuoteTyyppi  tyyppi) {
     this.tyyppi = tyyppi;
 }
 
@@ -59,11 +73,11 @@ public void setVari(String vari) {
     this.vari = vari;
 }
 
-public String getKoko() {
+public Koko getKoko() {
     return koko;
 }
 
-public void setKoko(String koko) {
+public void setKoko(Koko koko) {
     this.koko = koko;
 }
 
@@ -89,12 +103,13 @@ public void setValmistaja(Valmistaja valmistaja) {
 @Override
 public String toString() {
     return "Tuote [TuoteId=" + tuoteId +
+           ", Nimi=" + nimi +
            ", Tyyppi=" + tyyppi +
            ", Väri=" + vari +
-           ", Koko=" + koko +
            ", Hinta=" + hinta +
            ", ValmistajaId=" + (valmistaja != null ? valmistaja.getValmistajaId() : "Ei saatavilla") +
            ", ValmistajanNimi=" + (valmistajaNimi != null ? valmistajaNimi : "Ei saatavilla") +
+           ", Koko=" + koko +
            "]";
 }
 
