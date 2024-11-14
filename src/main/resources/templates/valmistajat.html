@@ -51,7 +51,8 @@
     <div
         style="display: flex; justify-content: space-between; align-items: center; padding-right: 5%; padding-left: 5%; padding-top: 5%;">
         <h2>Valmistajat</h2>
-        <a class="btn btn-danger" href="/deleteEmptyvalmistajat" onclick="confirmDeleteEmptyValmistajat(event)">Poista käyttämättömät
+        <a class="btn btn-danger" href="/deleteEmptyvalmistajat" onclick="confirmDeleteEmptyValmistajat(event)">Poista
+            käyttämättömät
             valmistajat</a>
     </div>
 
@@ -72,6 +73,8 @@
                         <a class="btn btn-danger" href="#"
                             th:href="@{/deletevalmistaja/{id}(id=${valmistaja.valmistajaId})}"
                             onclick="confirmDelete(event)">Poista</a>
+                        <a class="btn btn-warning" href="#"
+                            th:href="@{/valmistajanTuotteet/{id}(id=${valmistaja.valmistajaId})}">Valmistajan tuotteet</a>
                     </td>
                 </tr>
             </tbody>

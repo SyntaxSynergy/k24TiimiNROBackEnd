@@ -62,12 +62,25 @@ public class VarastoController {
         return "valmistajat";
     }
 
+    @GetMapping("/valmistajanTuotteet/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String valmistajanTuotteet(@PathVariable("id") Long valmistajaId, Model model) {
+        Valmistaja valmistaja = vrepository.findById(valmistajaId)
+            .orElseThrow(() -> new IllegalArgumentException("Valmistajaa ei löytynyt"));
+    
+        List<Tuote> tuotteet = tuoteRepository.findByValmistaja(valmistaja);
+        model.addAttribute("valmistaja", valmistaja);
+        model.addAttribute("tuotteet", tuotteet);
+    
+        return "valmistajanTuotteet";
+    }
+
     @PostMapping("/saveval")
     @PreAuthorize("hasAuthority('ADMIN')")
     public String saveValmistaja(Valmistaja valmistaja) {
         vrepository.save(valmistaja);
 
-        return "redirect:tuotteet";
+        return "redirect:valmistajat";
     }
 
     @PostMapping("/save")

@@ -45,6 +45,9 @@ public List<Tuote> getTuotteet() {
     return tuotteet;
 }
 
+public void setTuotteet(List<Tuote> tuotteet) {
+    this.tuotteet = tuotteet;
+}
 
 @Override
 	public String toString() {

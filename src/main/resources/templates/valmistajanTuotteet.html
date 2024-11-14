@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valmistajan tuotteet</title>
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+
+<body>
+    <div style="padding-right: 5%; padding-left: 5%; padding-top: 5%;">
+        <div>
+            <h1 th:text="'Valmistajan ' + ${valmistaja.valmistajaNimi} + ' Tuotteet'"></h1>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end;">
+            <div style="margin-right: 20px;">
+                <a class="btn btn-warning" href="/valmistajat">Takaisin valmistajalistaukseen</a>
+            </div>
+            <div>
+                <a class="btn btn-primary" href="/index">Takaisin etusivulle</a>
+            </div>
+        </div>
+
+
+        <div style="padding-left: 5%; padding-right: 5%; padding-top: 2%;">
+            <table class="table table-striped" style="margin: 0 auto;">
+                <thead>
+                    <tr>
+                        <th>Nimi</th>
+                        <th>Tyyppi</th>
+                        <th>Väri</th>
+                        <th>Koko</th>
+                        <th>Hinta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="tuote : ${tuotteet}">
+                        <td th:text="${tuote.nimi}"></td>
+                        <td th:text="${tuote.tyyppi.tyyppiNimi}"></td>
+                        <td th:text="${tuote.vari}"></td>
+                        <td th:text="${tuote.koko}"></td>
+                        <td th:text="${tuote.hinta}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

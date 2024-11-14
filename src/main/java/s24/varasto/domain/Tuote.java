@@ -21,9 +21,6 @@ private TuoteTyyppi tyyppi;
 @JoinColumn(name = "valmistajaId")
 private Valmistaja valmistaja;
 
-@Column(name = "valmistaja_nimi") 
-private String valmistajaNimi;
-
 @Enumerated(EnumType.STRING)
 private Koko koko;
 
@@ -36,7 +33,6 @@ this.tyyppi=tyyppi;
 this.vari=vari;
 this.hinta=hinta;
 this.valmistaja=valmistaja;
-this.valmistajaNimi = valmistaja.getValmistajaNimi();
 this.koko=koko;
 
 }
@@ -95,22 +91,19 @@ public Valmistaja getValmistaja() {
 
 public void setValmistaja(Valmistaja valmistaja) {
     this.valmistaja = valmistaja;
-    this.valmistajaNimi = valmistaja.getValmistajaNimi(); 
 }
 
 
 
 @Override
 public String toString() {
-    return "Tuote [TuoteId=" + tuoteId +
-           ", Nimi=" + nimi +
-           ", Tyyppi=" + tyyppi +
-           ", Väri=" + vari +
-           ", Hinta=" + hinta +
-           ", ValmistajaId=" + (valmistaja != null ? valmistaja.getValmistajaId() : "Ei saatavilla") +
-           ", ValmistajanNimi=" + (valmistajaNimi != null ? valmistajaNimi : "Ei saatavilla") +
-           ", Koko=" + koko +
-           "]";
+    return "Tuote [tuoteId=" + tuoteId +
+    ", nimi=" + nimi +
+    ", tyyppi=" + tyyppi +
+    ", vari=" + vari +
+    ", hinta=" + hinta +
+    ", valmistaja=" + valmistaja +
+    ", koko=" + koko + "]";
 }
 
 
