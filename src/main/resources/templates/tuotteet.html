@@ -11,7 +11,7 @@
         // Poiston varmistus funktio
         function confirmDelete(event) {
             event.preventDefault();
-            var confirmation = confirm("Haluatko varmasti poistaa tämän tuotteen?");
+            const confirmation = confirm("Haluatko varmasti poistaa tämän tuotteen?");
             if (confirmation) {
                 window.location.href = event.target.href; // Siirtyy poistolinkkiin, jos vahvistettu
             }
@@ -66,7 +66,7 @@
                     <select th:field="*{valmistaja}">
                         <option th:each="valmistaja : ${valmistajat}" th:value="${valmistaja.valmistajaId}" th:text="${valmistaja.valmistajaNimi}"></option>
                     </select>
-                    
+
                     <!-- koko valikko tulee näkyviin jos "VAATE" on valittu -->
                     <div style="display: flex;"id="kokoField"  >
                         <label id="kokoField" for="koko">Koko</label>
