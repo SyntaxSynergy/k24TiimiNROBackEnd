@@ -29,29 +29,27 @@ public class VarastoController {
     @Autowired
     private TuotetyyppiRepository tuotetyyppiRepository;
 
-     @RequestMapping(value="/login")
-    public String login() {	
-    return "login";
-     }	
-
-    @GetMapping("/tuotteet")
-    public String tuotelistaus(Model model) {
-        //localhost:8080/varasto <-- Linkki kyseiseen sivuun :D
-        model.addAttribute("tuotteet", tuoteRepository.findAll());
-        return "tuotteet";
+    @RequestMapping(value = "/login")
+    public String login() {
+        return "login";
     }
 
-    @GetMapping("/uusituote") 
+    @GetMapping("/index")
+    public String index() {
+        return "index";
+    }
+
+    @GetMapping("/tuotteet")
     @PreAuthorize("hasAuthority('ADMIN')")
     public String uusiTuote(Model model) {
+        // localhost:8080/varasto <-- Linkki kyseiseen sivuun :D
+        model.addAttribute("tuotteet", tuoteRepository.findAll());
         model.addAttribute("tuote", new Tuote());
         model.addAttribute("valmistajat", vrepository.findAll());
         model.addAttribute("tuotetyypit", tuotetyyppiRepository.findAll());
         List<Koko> koot = Arrays.asList(Koko.values());
         model.addAttribute("koot", koot);
-        //localhost:8080/uusituote
-
-        return "uusituote";
+        return "tuotteet";
     }
 
     @GetMapping("/valmistajat")
@@ -59,7 +57,7 @@ public class VarastoController {
     public String uusiValmistaja(Model model) {
         model.addAttribute("valmistaja", new Valmistaja());
         model.addAttribute("valmistajat", vrepository.findAll());
-        //localhost:8080/uusival
+        // localhost:8080/uusival
 
         return "valmistajat";
     }
@@ -118,11 +116,7 @@ public class VarastoController {
         model.addAttribute("tuotetyypit", tuotetyyppiRepository.findAll());
         model.addAttribute("koot", koot);
 
-   
-        
         return "muokkaatuote";
     }
-    
 
-    
 }

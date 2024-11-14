@@ -34,7 +34,7 @@ public class WebSecurityConfig  {
 		)
 		.formLogin(formlogin -> formlogin
 				.loginPage("/login")
-				.defaultSuccessUrl("/tuotteet", true)
+				.defaultSuccessUrl("/index", true)
 				.permitAll()
 		)
 		.logout(logout -> logout

@@ -9,23 +9,34 @@
 </head>
 
 <body>
-    <div
-        style="display: flex; justify-content: space-between; align-items: center; padding-right: 5%; padding-left: 5%; padding-top: 5%;">
+    <div style="padding-right: 5%; padding-left: 5%; padding-top: 5%;">
         <div>
             <h1>Lisää valmistaja</h1>
-            <form th:object="${valmistaja}" th:action="@{saveval}" action="#" method="post">
-                <label for="valmistajaNimi">Valmistajan nimi</label>
-                <input type="text" id="valmistajaNimi" th:field="*{valmistajaNimi}" />
-
-                <input type="submit" value="Save"></input>
-                <a href="/tuotteet">Takaisin tuotelistaukseen</a>
         </div>
-        <div>
-            <a class="btn btn-danger" href="/deleteEmptyvalmistajat">Poista käyttämättömät valmistajat</a>
+
+        <div style="display: flex; flex-direction: row; justify-content: space-between;">
+            <div>
+                <form th:object="${valmistaja}" th:action="@{saveval}" action="#" method="post">
+                    <label for="valmistajaNimi">Valmistajan nimi</label>
+                    <input type="text" id="valmistajaNimi" th:field="*{valmistajaNimi}" />
+
+                    <input type="submit" value="Save"></input>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end;">
+                <a class="btn btn-primary" href="/index">Takaisin etusivulle</a>
+            </div>
+
         </div>
     </div>
-    <div style="padding-left: 5%; padding-right: 5%; padding-top: 2%;">
+
+    <div
+        style="display: flex; justify-content: space-between; align-items: center; padding-right: 5%; padding-left: 5%; padding-top: 5%;">
         <h2>Valmistajat</h2>
+        <a class="btn btn-danger" href="/deleteEmptyvalmistajat">Poista käyttämättömät valmistajat</a>
+    </div>
+
+    <div style="padding-left: 5%; padding-right: 5%; padding-top: 2%;">
         <table class="table table-striped" style="margin: 0 auto;">
             <thead>
                 <tr>

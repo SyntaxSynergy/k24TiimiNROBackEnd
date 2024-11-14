@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en"
-xmlns:th="http://www.thymeleaf.org">
-<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tuotteet</title>
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 
     <script>
-   
+
         function confirmDelete(event) {
             event.preventDefault();
             var confirmation = confirm("Haluatko varmasti poistaa tämän tuotteen?");
@@ -18,45 +18,87 @@ xmlns:th="http://www.thymeleaf.org">
         }
     </script>
 </head>
+
 <body>
-    <div style="display: flex; justify-content: space-between; align-items: center; padding-right: 5%; padding-left: 5%; padding-top: 5%;">
-        <h1>Tuotelistaus</h1>
-        <div sec:authorize="hasAuthority('ADMIN')">
-            <a class="btn btn-success" href="/uusituote">Lisää tuote</a>
-            <a class="btn btn-success" href="/valmistajat">Valmistajat</a>
+    <div style="padding-right: 5%; padding-left: 5%; padding-top: 5%;">
+        <div>
+            <h1>Lisää Tuote</h1>
         </div>
-    </div>
-    <div style="padding-left: 5%; padding-right: 5%; padding-top: 2%;">
-        <table class="table table-striped" style="margin: 0 auto;">
-            <tr>
-                <th>Nimi</th>
-                <th>Tyyppi</th>
-                <th>Väri</th>
-                <th>Koko</th>
-                <th>Hinta</th>
-                <th>Valmistaja</th>
-                <th sec:authorize="hasAuthority('ADMIN')">Toiminnot</th>
-            </tr>   
-            <tr th:each="tuote : ${tuotteet}">
-                <td th:text="${tuote.nimi}"></td>
-                <td th:text="${tuote.tyyppi.tyyppiNimi}"></td>
-                <td th:text="${tuote.vari}"></td>
-                <td th:text="${tuote.koko}"></td>
-                <td th:text="${tuote.hinta}"></td>
-                <td th:text="${tuote.valmistaja}"></td>
-                <td sec:authorize="hasAuthority('ADMIN')">
-                    <a class="btn btn-warning" th:href="@{/edit/{id}(id=${tuote.tuoteId})}">Muokkaa</a>
-                    <a class="btn btn-danger" href="#" th:href="@{/delete/{id}(id=${tuote.tuoteId})}" onclick="confirmDelete(event)">Poista</a>
-                </td>    
-            </tr>
-        </table>
-        <div style="display: flex; justify-content: center; padding:50px">
-            <form th:action="@{/logout}" method="post">
-                <input type="submit" value="Kirjaudu ulos" class="btn btn-sm btn-danger"/>
-            </form>
+
+        <div style="display: flex; flex-direction: row; justify-content: space-between;">
+            <div>
+                <form th:object="${tuote}" th:action="@{save}" action="#" method="post">
+                    <label for="tyyppi">Nimi</label>
+                    <input type="text" id="title" th:field="*{nimi}" />
+                    <label for="tyyppi">Tyyppi</label>
+                    <select th:field="*{tyyppi}">
+                        <option th:each="tyyppi : ${tuotetyypit}" th:value="${tyyppi.tyyppiId}"
+                            th:text="${tyyppi.tyyppiNimi}"></option>
+                    </select>
+
+                    <label for="vari">Väri</label>
+                    <input type="text" id="author" th:field="*{vari}" />
+
+                    <label for="koko">Koko</label>
+                    <select th:field="*{koko}">
+                        <option th:each="koko : ${koot}" th:value="${koko}" th:text="${koko}"></option>
+                    </select>
+
+                    <label for="hinta">Hinta</label>
+                    <input type="text" th:field="*{hinta}" />
+
+                    <label for="valmistaja">Valmistaja</label>
+                    <select th:field="*{valmistaja}">
+                        <option th:each="valmistaja : ${valmistajat}" th:value="${valmistaja.valmistajaId}"
+                            th:text="${valmistaja.valmistajaNimi}"></option>
+                    </select>
+                    <input type="submit" value="Save" />
+            </div>
+
+            <div style="display: flex; justify-content: flex-end;">
+                <a class="btn btn-primary" href="/index">Takaisin etusivulle</a>
+            </div>
+
         </div>
     </div>
 
-    
+    <div
+        style="display: flex; justify-content: space-between; align-items: center; padding-right: 5%; padding-left: 5%; padding-top: 5%;">
+        <h2>Tuotteet</h2>
+    </div>
+
+    <div style="padding-left: 5%; padding-right: 5%; padding-top: 2%;">
+        <table class="table table-striped" style="margin: 0 auto;">
+            <thead>
+                <tr>
+                    <th>Nimi</th>
+                    <th>Tyyppi</th>
+                    <th>Väri</th>
+                    <th>Koko</th>
+                    <th>Hinta</th>
+                    <th>Valmistaja</th>
+                    <th sec:authorize="hasAuthority('ADMIN')">Toiminnot</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="tuote : ${tuotteet}">
+                    <td th:text="${tuote.nimi}"></td>
+                    <td th:text="${tuote.tyyppi.tyyppiNimi}"></td>
+                    <td th:text="${tuote.vari}"></td>
+                    <td th:text="${tuote.koko}"></td>
+                    <td th:text="${tuote.hinta}"></td>
+                    <td th:text="${tuote.valmistaja}"></td>
+                    <td sec:authorize="hasAuthority('ADMIN')">
+                        <a class="btn btn-warning" th:href="@{/edit/{id}(id=${tuote.tuoteId})}">Muokkaa</a>
+                        <a class="btn btn-danger" href="#" th:href="@{/delete/{id}(id=${tuote.tuoteId})}"
+                            onclick="confirmDelete(event)">Poista</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </form>
+
 </body>
+
 </html>
