@@ -37,6 +37,9 @@ xmlns:th="http://www.thymeleaf.org">
         <label for="hinta">Hinta</label>
         <input type="text" th:field="*{hinta}" />
 
+        <label for="varastossa">Varastossa</label>
+        <input type="text" th:field="*{varastomaara}" />
+
         <label for="valmistaja">Valmistaja</label>
         <select th:field="*{valmistaja}">
             <option th:each="valmistaja : ${valmistajat}" th:value="${valmistaja.valmistajaId}" th:text="${valmistaja.valmistajaNimi}"></option>

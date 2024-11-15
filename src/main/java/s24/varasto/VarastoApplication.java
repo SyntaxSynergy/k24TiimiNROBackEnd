@@ -43,11 +43,11 @@ public class VarastoApplication {
 			
 
 		
-			tuoteRepository.save(new Tuote("KoiranTakki",vaate,"pinkki",10.0,valmistaja3,Koko.M));
-			tuoteRepository.save(new Tuote("Flexihihna",vaate, "Musta", 10.0, valmistaja2,Koko.L));
-			tuoteRepository.save(new Tuote("Flexihihna",vaate, "Punainen", 12.0, valmistaja2, Koko.S));
-			tuoteRepository.save(new Tuote("Flexihihna",vaate, "Punainen", 12.0, valmistaja2, Koko.S));
-			tuoteRepository.save(new Tuote("Koiranlelu Rudolph",lelu, "beige", 5.69, valmistaja4, null));
+			tuoteRepository.save(new Tuote("KoiranTakki",vaate,"pinkki",10.0, 5, valmistaja3,Koko.M));
+			tuoteRepository.save(new Tuote("Flexihihna",vaate, "Musta", 10.0, 10, valmistaja2,Koko.L));
+			tuoteRepository.save(new Tuote("Flexihihna",vaate, "Punainen", 12.0, 2, valmistaja2, Koko.S));
+			tuoteRepository.save(new Tuote("Flexihihna",vaate, "Punainen", 12.0, 9, valmistaja2, Koko.S));
+			tuoteRepository.save(new Tuote("Koiranlelu Rudolph",lelu, "beige", 5.69, 200, valmistaja4, null));
 
 		
 			User user1 = new User("user", "$2y$10$GSuaduq1m5dh9WYzj/Uxd.cIwOmDsQF8GVzTgqykveGATXRPSwtt2", "USER");

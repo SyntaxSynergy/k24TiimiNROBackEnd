@@ -66,6 +66,9 @@
                     <label for="hinta">Hinta</label>
                     <input type="text" th:field="*{hinta}" />
 
+                    <label for="varastossa">Varastossa</label>
+                    <input type="text" th:field="*{varastomaara}" />
+
                     <label for="valmistaja">Valmistaja</label>
                     <select th:field="*{valmistaja}">
                         <option th:each="valmistaja : ${valmistajat}" th:value="${valmistaja.valmistajaId}" th:text="${valmistaja.valmistajaNimi}"></option>
@@ -100,6 +103,7 @@
                     <th>Väri</th>
                     <th>Koko</th>
                     <th>Hinta</th>
+                    <th>Varastossa</th>
                     <th>Valmistaja</th>
                     <th sec:authorize="hasAuthority('ADMIN')">Toiminnot</th>
                 </tr>
@@ -111,6 +115,7 @@
                     <td th:text="${tuote.vari}"></td>
                     <td th:text="${tuote.koko}"></td>
                     <td th:text="${tuote.hinta}"></td>
+                    <td th:text="${tuote.varastomaara}"></td>
                     <td th:text="${tuote.valmistaja}"></td>
                     <td sec:authorize="hasAuthority('ADMIN')">
                         <a class="btn btn-warning" th:href="@{/edit/{id}(id=${tuote.tuoteId})}">Muokkaa</a>
