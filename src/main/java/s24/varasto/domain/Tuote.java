@@ -12,6 +12,7 @@ private Long tuoteId;
 private String nimi;
 private String vari;
 private Double hinta;
+private int varastomaara;
 
 @ManyToOne
 @JoinColumn(name = "tyyppi_id", nullable = false)
@@ -26,12 +27,13 @@ private Koko koko;
 
 public Tuote () {}
 
-public Tuote (String nimi,TuoteTyyppi tyyppi,String vari,Double hinta,Valmistaja valmistaja,Koko koko ){
+public Tuote (String nimi,TuoteTyyppi tyyppi,String vari,Double hinta,int varastomaara, Valmistaja valmistaja,Koko koko ){
 super();
 this.nimi=nimi;
 this.tyyppi=tyyppi;
 this.vari=vari;
 this.hinta=hinta;
+this.varastomaara=varastomaara;
 this.valmistaja=valmistaja;
 this.koko=koko;
 
@@ -85,6 +87,14 @@ public void setHinta(Double hinta) {
     this.hinta = hinta;
 }
 
+public int getVarastomaara() {
+    return varastomaara;
+}
+
+public void setVarastomaara(int varastomaara) {
+    this.varastomaara = varastomaara;
+}
+
 public Valmistaja getValmistaja() {
     return valmistaja;
 }
@@ -102,6 +112,7 @@ public String toString() {
     ", tyyppi=" + tyyppi +
     ", vari=" + vari +
     ", hinta=" + hinta +
+    ", varastomaara=" + varastomaara +
     ", valmistaja=" + valmistaja +
     ", koko=" + koko + "]";
 }
