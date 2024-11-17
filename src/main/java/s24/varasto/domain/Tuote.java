@@ -1,6 +1,10 @@
 package s24.varasto.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Tuote {
@@ -9,9 +13,17 @@ public class Tuote {
 @GeneratedValue(strategy = GenerationType.AUTO)
 private Long tuoteId;
 
+@NotBlank(message = "Nimi tarvitaan.")
 private String nimi;
+
+@NotBlank(message = "Väri tarvitaan.")
 private String vari;
+
+@NotNull(message = "Hinta tarvitaan.")
+@DecimalMin(value = "0.0", inclusive = false, message = "hinta ei voi olla negatiivinen.")
 private Double hinta;
+
+@Min(value = 0, message = "Ei voi olla alle 0.")
 private int varastomaara;
 
 @ManyToOne
