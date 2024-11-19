@@ -16,6 +16,8 @@ xmlns:th="http://www.thymeleaf.org">
 
         <label for="nimi">Nimi</label>
         <input type="text" th:field="*{nimi}" />
+        <div class="error" th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}"></div>
+
 
         <label for="tyyppi">Tyyppi</label>
         <select th:field="*{tyyppi}">
@@ -23,27 +25,39 @@ xmlns:th="http://www.thymeleaf.org">
                     th:value="${tyyppi.tyyppiId}" 
                     th:text="${tyyppi.tyyppiNimi}"></option>
         </select>
+        <div class="error" th:if="${#fields.hasErrors('tyyppi')}" th:errors="*{tyyppi}"></div>
+
         
 
         <label for="vari">Väri</label>
         <input type="text" th:field="*{vari}" />
+        <div class="error" th:if="${#fields.hasErrors('vari')}" th:errors="*{vari}"></div>
+
 
         <label for="koko">Koko</label>
         <select th:field="*{koko}">
             <option th:each="koko : ${koot}" th:value="${koko}" th:text="${koko}"></option>
         </select>
+        <div class="error" th:if="${#fields.hasErrors('koko')}" th:errors="*{koko}"></div>
+
         
 
         <label for="hinta">Hinta</label>
         <input type="text" th:field="*{hinta}" />
+        <div class="error" th:if="${#fields.hasErrors('hinta')}" th:errors="*{hinta}"></div>
+
 
         <label for="varastossa">Varastossa</label>
         <input type="text" th:field="*{varastomaara}" />
+        <div class="error" th:if="${#fields.hasErrors('varastomaara')}" th:errors="*{varastomaara}"></div>
+
 
         <label for="valmistaja">Valmistaja</label>
         <select th:field="*{valmistaja}">
             <option th:each="valmistaja : ${valmistajat}" th:value="${valmistaja.valmistajaId}" th:text="${valmistaja.valmistajaNimi}"></option>
         </select>
+        <div class="error" th:if="${#fields.hasErrors('valmistaja')}" th:errors="*{valmistaja}"></div>
+
 
         <input type="submit" class="btn btn-success" value="Save"></input>
     </form>

@@ -6,12 +6,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Valmistaja {
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
 private Long valmistajaId;
+
+@NotBlank(message = "Nimi tarvitaan.")
 private String valmistajaNimi;
 
   @JsonIgnore
