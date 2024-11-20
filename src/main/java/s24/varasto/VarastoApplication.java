@@ -39,9 +39,6 @@ public class VarastoApplication {
 			valmistajaRepository.save(valmistaja3);
 			valmistajaRepository.save(valmistaja4);
 
-
-			
-
 		
 			tuoteRepository.save(new Tuote("KoiranTakki",vaate,"pinkki",10.0, 5, valmistaja3,Koko.M));
 			tuoteRepository.save(new Tuote("Flexihihna",vaate, "Musta", 10.0, 10, valmistaja2,Koko.L));
@@ -50,11 +47,8 @@ public class VarastoApplication {
 			tuoteRepository.save(new Tuote("Koiranlelu Rudolph",lelu, "beige", 5.69, 200, valmistaja4, null));
 
 		
-			User user1 = new User("user", "$2y$10$GSuaduq1m5dh9WYzj/Uxd.cIwOmDsQF8GVzTgqykveGATXRPSwtt2", "USER");
-			User user2 = new User("admin", "$2y$10$/EgL8TiEUaYtj4y9Uuqjdua9F/bAF2bDfzVOUM1zHMdIFyLNLBJbS", "ADMIN");
+			User user1 = new User("admin", "$2a$10$UuWOsTUpmZ9ElutsSPn0WuLO3yrrWyjltY3YhHz9LNDSTZi7ucaOC", "ADMIN");
 			userRepository.save(user1);
-			userRepository.save(user2);
-
 		
 			tuoteRepository.findAll().forEach(System.out::println);
 		};
