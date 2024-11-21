@@ -35,7 +35,7 @@ public class WebSecurityConfig  {
 		.headers(headers -> headers
 				.frameOptions(frameoptions -> 
 				frameoptions.disable() 		
-			    )
+				)
 		)
 		.formLogin(formlogin -> formlogin
 				.loginPage("/login")
