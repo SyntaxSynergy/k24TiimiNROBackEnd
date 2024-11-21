@@ -25,6 +25,11 @@ public class WebSecurityConfig  {
 		http
 		.authorizeHttpRequests(authorize -> authorize
 				.requestMatchers(antMatcher("/css/**")).permitAll()
+				.requestMatchers(antMatcher("/api/**")).permitAll()
+				.requestMatchers(antMatcher("/tuotteetrest")).permitAll()
+				.requestMatchers(antMatcher("/tuote/{id}")).permitAll()
+				.requestMatchers(antMatcher("/valmistajatrest")).permitAll()
+				.requestMatchers(antMatcher("/valmistaja/{id}")).permitAll()
 			.anyRequest().authenticated()
 		)
 		.headers(headers -> headers
