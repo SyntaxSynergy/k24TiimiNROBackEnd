@@ -17,6 +17,7 @@ public class TuoteTyyppi {
     public TuoteTyyppi() {}
 
     public TuoteTyyppi(String tyyppiNimi) {
+        super();
         this.tyyppiNimi = tyyppiNimi;
     }
 
@@ -36,4 +37,8 @@ public class TuoteTyyppi {
     public void setTyyppiNimi(String tyyppiNimi) {
         this.tyyppiNimi = tyyppiNimi;
     }
+    @Override
+	public String toString() {
+		return tyyppiNimi;
+	}
 }
