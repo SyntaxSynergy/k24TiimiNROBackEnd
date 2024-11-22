@@ -48,38 +48,43 @@
         </div>
 
         <div style="display: flex; flex-direction: row; justify-content: space-between;">
-            <div>
-                <form th:object="${tuote}" th:action="@{save}" action="#" method="post" style="display: flex; gap: 10px; align-items: center; flex-wrap: nowrap;">
+            <div style="width: 100%;">
+                <form th:object="${tuote}" th:action="@{save}" action="#" method="post" style="display: flex; gap: 9px; align-items: center; flex-wrap: wrap; flex-direction: row;">
                     <label for="title">Nimi</label>
                     <input type="text" id="title" th:field="*{nimi}" />
+                    <span th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}"></span>
                     
                     <label for="tyyppi">Tyyppi</label>
                     <select id="tyyppiSelect" th:field="*{tyyppi}">
                         <option th:each="tyyppi : ${tuotetyypit}" th:value="${tyyppi.tyyppiId}" th:text="${tyyppi.tyyppiNimi}"></option>
                     </select>
+                    <span th:if="${#fields.hasErrors('tyyppi')}" th:errors="*{tyyppi}"></span>
 
                     <label for="vari">Väri</label>
                     <input type="text" id="author" th:field="*{vari}" />
-
+                    <span th:if="${#fields.hasErrors('vari')}" th:errors="*{vari}"></span>
                     
 
                     <label for="hinta">Hinta</label>
                     <input type="text" th:field="*{hinta}" />
+                    <span th:if="${#fields.hasErrors('hinta')}" th:errors="*{hinta}"></span>
 
                     <label for="varastossa">Varastossa</label>
                     <input type="text" th:field="*{varastomaara}" />
+                    <span th:if="${#fields.hasErrors('varastomaara')}" th:errors="*{varastomaara}"></span>
 
                     <label for="valmistaja">Valmistaja</label>
                     <select th:field="*{valmistaja}">
                         <option th:each="valmistaja : ${valmistajat}" th:value="${valmistaja.valmistajaId}" th:text="${valmistaja.valmistajaNimi}"></option>
                     </select>
+                    <span th:if="${#fields.hasErrors('valmistaja')}" th:errors="*{valmistaja}"></span>
 
-                    <!-- koko valikko tulee näkyviin jos "VAATE" on valittu -->
                     <div style="display: flex;"id="kokoField"  >
                         <label id="kokoField" for="koko">Koko</label>
                         <select th:field="*{koko}">
                             <option th:each="koko : ${koot}" th:value="${koko}" th:text="${koko}"></option>
                         </select>
+                        <span th:if="${#fields.hasErrors('koko')}" th:errors="*{koko}"></span>
                     </div>
                     <input type="submit" value="Save" />
                    

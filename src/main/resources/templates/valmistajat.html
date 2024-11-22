@@ -37,15 +37,18 @@
                 <form th:object="${valmistaja}" th:action="@{saveval}" action="#" method="post">
                     <label for="valmistajaNimi">Valmistajan nimi</label>
                     <input type="text" id="valmistajaNimi" th:field="*{valmistajaNimi}" />
-
-                    <input type="submit" value="Save"></input>
+                    <div th:if="${#fields.hasErrors('valmistajaNimi')}" th:errors="*{valmistajaNimi}"
+                        class="text-danger"></div>
             </div>
 
-            <div style="display: flex; justify-content: flex-end;">
-                <a class="btn btn-primary" href="/index">Takaisin etusivulle</a>
-            </div>
-
+            <input type="submit" value="Save"></input>
         </div>
+
+        <div style="display: flex; justify-content: flex-end;">
+            <a class="btn btn-primary" href="/index">Takaisin etusivulle</a>
+        </div>
+
+    </div>
     </div>
 
     <div
@@ -74,7 +77,8 @@
                             th:href="@{/deletevalmistaja/{id}(id=${valmistaja.valmistajaId})}"
                             onclick="confirmDelete(event)">Poista</a>
                         <a class="btn btn-warning" href="#"
-                            th:href="@{/valmistajanTuotteet/{id}(id=${valmistaja.valmistajaId})}">Valmistajan tuotteet</a>
+                            th:href="@{/valmistajanTuotteet/{id}(id=${valmistaja.valmistajaId})}">Valmistajan
+                            tuotteet</a>
                     </td>
                 </tr>
             </tbody>
