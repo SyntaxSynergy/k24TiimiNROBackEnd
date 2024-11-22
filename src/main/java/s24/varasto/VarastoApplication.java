@@ -24,9 +24,11 @@ public class VarastoApplication {
 			
 			TuoteTyyppi vaate = new TuoteTyyppi("VAATE");
 			TuoteTyyppi lelu = new TuoteTyyppi("LELU");
+			TuoteTyyppi ruoka = new TuoteTyyppi("RUOKA");
 
 			tuotetyyppiRepository.save(vaate);
 			tuotetyyppiRepository.save(lelu);
+			tuotetyyppiRepository.save(ruoka);
 
 			
 			Valmistaja valmistaja1 = new Valmistaja("Rukka");
