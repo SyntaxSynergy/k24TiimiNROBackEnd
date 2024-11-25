@@ -15,7 +15,7 @@ import s24.varasto.domain.Valmistaja;
 import s24.varasto.domain.ValmistajaRepository;
 
 @SpringBootTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+/*@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) */
 public class RepositoryTest {
 
     @Autowired
