@@ -11,6 +11,7 @@ public class Tuote {
     
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
+@Column(name = "tuote_id")
 private Long tuoteId;
 
 @NotBlank(message = "Nimi tarvitaan.")

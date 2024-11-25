@@ -12,9 +12,11 @@ import jakarta.validation.constraints.NotBlank;
 public class Valmistaja {
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
+@Column(name = "valmistaja_id")
 private Long valmistajaId;
 
 @NotBlank(message = "Nimi tarvitaan.")
+@Column(name = "valmistaja_nimi")
 private String valmistajaNimi;
 
   @JsonIgnore

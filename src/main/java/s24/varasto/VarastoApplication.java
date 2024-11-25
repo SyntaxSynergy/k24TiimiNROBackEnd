@@ -12,7 +12,7 @@ public class VarastoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(VarastoApplication.class, args);
 	}
-
+/* 
 	@Bean
 	public CommandLineRunner demo(
 		TuoteRepository tuoteRepository, 
@@ -54,4 +54,5 @@ public class VarastoApplication {
 			tuoteRepository.findAll().forEach(System.out::println);
 		};
 	}
+		*/
 }

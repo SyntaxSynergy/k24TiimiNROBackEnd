@@ -15,7 +15,7 @@ import s24.varasto.domain.Valmistaja;
 import s24.varasto.domain.ValmistajaRepository;
 
 @SpringBootTest
-/*@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) */
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class RepositoryTest {
 
     @Autowired
@@ -46,16 +46,16 @@ public class RepositoryTest {
         tyyppi = tuoteTyyppiRepository.save(tyyppi);
         Tuote tuote = new Tuote("Pallo", tyyppi, "pinkki", 5.00, 10, valmistaja, null);
         tuote = tuoteRepository.save(tuote);
-        Long tuoteId = tuote.getTuoteId();
-        tuoteRepository.deleteById(tuoteId);
-        assertThat(tuoteRepository.findById(tuoteId)).isEmpty();
+        Long tuote_id = tuote.getTuoteId();
+        tuoteRepository.deleteById(tuote_id);
+        assertThat(tuoteRepository.findById(tuote_id)).isEmpty();
     }
 
     @Test
     public void deleteValmistajaFromDatabase() {
         Valmistaja valmistaja = new Valmistaja("Kissanpaivat");
         valmistaja = valmistajaRepository.save(valmistaja);
-        Long valmistajaId = valmistaja.getValmistajaId();
-        valmistajaRepository.deleteById(valmistajaId);
+        Long valmistaja_id = valmistaja.getValmistajaId();
+        valmistajaRepository.deleteById(valmistaja_id);
     }
 }

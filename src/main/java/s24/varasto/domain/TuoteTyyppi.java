@@ -8,9 +8,10 @@ public class TuoteTyyppi {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "tyyppi_id")
     private Long tyyppiId;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "tyyppi_nimi", nullable = false, unique = true)
     private String tyyppiNimi;
 
   
