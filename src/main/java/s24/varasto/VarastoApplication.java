@@ -54,5 +54,5 @@ public class VarastoApplication {
 			tuoteRepository.findAll().forEach(System.out::println);
 		};
 	}
-*/
+		*/
 }
