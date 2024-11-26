@@ -15,16 +15,20 @@ public class Tuote {
 private Long tuoteId;
 
 @NotBlank(message = "Nimi tarvitaan.")
+@Column(name = "nimi")
 private String nimi;
 
 @NotBlank(message = "Väri tarvitaan.")
+@Column(name = "vari")
 private String vari;
 
 @NotNull(message = "Hinta tarvitaan.")
 @DecimalMin(value = "0.0", inclusive = false, message = "hinta ei voi olla negatiivinen.")
+@Column(name = "hinta")
 private Double hinta;
 
 @Min(value = 0, message = "Ei voi olla alle 0.")
+@Column(name = "varastomaara")
 private int varastomaara;
 
 @ManyToOne
@@ -32,7 +36,7 @@ private int varastomaara;
 private TuoteTyyppi tyyppi;
 
 @ManyToOne
-@JoinColumn(name = "valmistajaId")
+@JoinColumn(name = "valmistaja_id")
 private Valmistaja valmistaja;
 
 @Enumerated(EnumType.STRING)
