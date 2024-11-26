@@ -48,7 +48,6 @@ public class VarastoApplication {
 			tuoteRepository.save(new Tuote("Flexihihna",vaate, "Punainen", 12.0, 2, valmistaja2, Koko.S));
 			tuoteRepository.save(new Tuote("Flexihihna",vaate, "Punainen", 12.0, 9, valmistaja2, Koko.S));
 			tuoteRepository.save(new Tuote("Koiranlelu Rudolph",lelu, "beige", 5.69, 200, valmistaja4, null));
-		
 			User user1 = new User("admin", "$2a$10$UuWOsTUpmZ9ElutsSPn0WuLO3yrrWyjltY3YhHz9LNDSTZi7ucaOC", "ADMIN");
 			userRepository.save(user1);
 		
