@@ -31,8 +31,6 @@ public class WebSecurityConfig  {
         corsConfig.addAllowedHeader("*"); // HTTP-otsikot ovar sallittuja pyynnöstä
         corsConfig.setAllowCredentials(true); // Evästeiden ja HTTP-autentikoinnin, lähettämisen pyynnöissä
 
-		corsConfig.addExposedHeader("Authorization");
-		corsConfig.addExposedHeader("Set-Cookie");
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfig); // CORS policy kaikille endpointeille
         return new CorsFilter(source);
@@ -44,11 +42,12 @@ public class WebSecurityConfig  {
 	public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 
 		http
-		.csrf(csrf -> csrf.ignoringRequestMatchers(antMatcher("/api/users"))
+		.csrf(csrf -> csrf.ignoringRequestMatchers(antMatcher("/api/users"), antMatcher("/login")  )
 		)
 		.authorizeHttpRequests(authorize -> authorize
 				.requestMatchers(antMatcher("/css/**")).permitAll()
 				.requestMatchers(antMatcher("/api/users/**")).permitAll()
+				.requestMatchers(antMatcher("/login")).permitAll()  
 				.requestMatchers(HttpMethod.POST, "/api/users").permitAll()
 				.requestMatchers(antMatcher("/api/**")).permitAll()
 				.requestMatchers(antMatcher("/tuotteetrest")).permitAll()
