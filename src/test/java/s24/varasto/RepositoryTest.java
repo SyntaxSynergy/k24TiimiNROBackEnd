@@ -31,8 +31,9 @@ public class RepositoryTest {
     public void addTuoteToDatabase(){
         Valmistaja valmistaja = new Valmistaja("valmistajax");
         valmistaja = valmistajaRepository.save(valmistaja);
-        TuoteTyyppi tyyppi = new TuoteTyyppi("Lelu");
-        tyyppi = tuoteTyyppiRepository.save(tyyppi);
+        String tyyppiNimi = "Lelu";
+        TuoteTyyppi tyyppi = tuoteTyyppiRepository.findByTyyppiNimi(tyyppiNimi)
+        .orElseThrow(() -> new IllegalArgumentException("Tyyppiä ei löydy: " + tyyppiNimi));
         Tuote tuote = new Tuote("Pallo", tyyppi, "pinkki", 5.00, 10, valmistaja, null);
         tuote = tuoteRepository.save(tuote);
         assertThat(tuote.getTuoteId()).isNotNull();
@@ -42,9 +43,10 @@ public class RepositoryTest {
     public void deleteTuoteFromDatabase() {
         Valmistaja valmistaja = new Valmistaja("valmistajax");
         valmistaja = valmistajaRepository.save(valmistaja);
-        TuoteTyyppi tyyppi = new TuoteTyyppi("Lelu");
-        tyyppi = tuoteTyyppiRepository.save(tyyppi);
-        Tuote tuote = new Tuote("Pallo", tyyppi, "pinkki", 5.00, 10, valmistaja, null);
+        String tyyppiNimi = "Lelu";
+        TuoteTyyppi tyyppi = tuoteTyyppiRepository.findByTyyppiNimi(tyyppiNimi)
+        .orElseThrow(() -> new IllegalArgumentException("Tyyppiä ei löydy: " + tyyppiNimi));
+        Tuote tuote = new Tuote("Töpön höpö", tyyppi, "pinkki", 10.00, 5, valmistaja, null );
         tuote = tuoteRepository.save(tuote);
         Long tuote_id = tuote.getTuoteId();
         tuoteRepository.deleteById(tuote_id);
