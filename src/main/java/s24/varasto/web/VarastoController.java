@@ -91,14 +91,17 @@ public class VarastoController {
     }
 
     @PostMapping("/save")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public String save(@Valid @ModelAttribute Tuote tuote, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            // Jos lomake ei ole validi, lähetä takaisin lomakkeen kanssa virheiden ja tuotteiden tiedot
-            model.addAttribute("tuote", tuote); // Lähetä tuote takaisin, jotta kentät säilyvät täytettyinä
-            model.addAttribute("tuotteet", tuoteRepository.findAll()); // Lähetä myös kaikki tuotteet
-            return "tuotteet"; // Palauta lomakesivu, jossa virheiden näyttäminen on määritelty
-        }
+@PreAuthorize("hasAuthority('ADMIN')")
+public String save(@Valid @ModelAttribute Tuote tuote, BindingResult bindingResult, Model model) {
+    if (bindingResult.hasErrors()) {
+        model.addAttribute("tuote", tuote); //lataa takas tyypit koot jne
+        model.addAttribute("tuotteet", tuoteRepository.findAll()); 
+        model.addAttribute("valmistajat", vrepository.findAll()); 
+        model.addAttribute("tuotetyypit", tuotetyyppiRepository.findAll()); 
+        model.addAttribute("koot", Arrays.asList(Koko.values())); 
+
+        return "tuotteet"; 
+    }
         if ("LELU".equals(tuote.getTyyppi().getTyyppiNimi())) {
             tuote.setKoko(null); // Lelulle ei tarvita kokoa
         }

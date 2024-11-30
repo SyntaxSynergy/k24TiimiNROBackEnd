@@ -28,7 +28,7 @@ private String vari;
 private Double hinta;
 
 @NotNull(message = "ei voi olla tyhjä")
-@Min(value = 0, message = "Ei voi olla alle 0.")
+@Min(value = 0)
 @Column(name = "varastomaara")
 private int varastomaara;
 
