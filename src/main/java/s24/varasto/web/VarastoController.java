@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.validation.Valid;
+import s24.varasto.domain.Asiakas;
+import s24.varasto.domain.AsiakasRepository;
+import s24.varasto.domain.Tilaus;
+import s24.varasto.domain.TilausRepository;
 import s24.varasto.domain.Koko;
 import s24.varasto.domain.Tuote;
 import s24.varasto.domain.TuoteRepository;
@@ -26,11 +30,14 @@ import s24.varasto.domain.ValmistajaRepository;
 public class VarastoController {
     @Autowired
     private TuoteRepository tuoteRepository;
-
     @Autowired
     private ValmistajaRepository vrepository;
     @Autowired
     private TuotetyyppiRepository tuotetyyppiRepository;
+    @Autowired
+    private AsiakasRepository arepository;
+    @Autowired
+    private TilausRepository trepository;
 
     @RequestMapping(value = "/login")
     public String login() {
@@ -63,6 +70,51 @@ public class VarastoController {
         // localhost:8080/uusival
 
         return "valmistajat";
+    }
+
+    @GetMapping("/asiakkaat")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String asiakkaat(Model model) {
+        model.addAttribute("asiakas", new Asiakas());
+        model.addAttribute("asiakkaat", arepository.findAll());
+        return "asiakkaat";
+    }
+
+    @PostMapping("/savea")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String saveAsiakas(@Valid @ModelAttribute Asiakas asiakas, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("asiakkaat", arepository.findAll());
+            return "asiakkaat";
+        }
+        arepository.save(asiakas);
+
+        return "redirect:asiakkaat";
+    }
+
+    @GetMapping("/tilaukset")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String tilaukset(Model model) {
+        model.addAttribute("tilaus", new Tilaus());
+        model.addAttribute("tilaukset", trepository.findAll());
+        model.addAttribute("asiakkaat", arepository.findAll());
+        model.addAttribute("tuotteet", tuoteRepository.findAll());
+        return "tilaukset";
+    }
+
+    @PostMapping("/savet")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String saveTilaus(@Valid @ModelAttribute Tilaus tilaus, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("tilaukset", trepository.findAll());
+            model.addAttribute("asiakkaat", arepository.findAll());
+            model.addAttribute("tuotteet", tuoteRepository.findAll());
+
+            return "tilaukset";
+        }
+        trepository.save(tilaus);
+
+        return "redirect:tilaukset";
     }
 
     @GetMapping("/valmistajanTuotteet/{id}")
@@ -110,6 +162,13 @@ public String save(@Valid @ModelAttribute Tuote tuote, BindingResult bindingResu
         return "redirect:tuotteet";
     }
 
+    @GetMapping("/deleteasiakas/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String deleteAsiakas(@PathVariable("id") Long asiakasid, Model model) {
+        arepository.deleteById(asiakasid);
+        return "redirect:../asiakkaat";
+    }
+
     @GetMapping("/delete/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteTuote(@PathVariable("id") Long tuoteId, Model model) {
@@ -134,6 +193,29 @@ public String save(@Valid @ModelAttribute Tuote tuote, BindingResult bindingResu
             }
         }
         return "redirect:/valmistajat";
+    }
+
+    @GetMapping("/deletetilaus/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String deleteTilaus(@PathVariable("id") Long tilausid, Model model) {
+        trepository.deleteById(tilausid);
+        return "redirect:../tilaukset";
+    }
+
+    @GetMapping("/edittilaus/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String editTilaus(@PathVariable("id") Long tilausid, Model model) {
+        model.addAttribute("tilaus", trepository.findById(tilausid));
+        model.addAttribute("asiakkaat", arepository.findAll());
+        model.addAttribute("tuotteet", tuoteRepository.findAll());
+        return "muokkaatilaus";
+    }
+
+    @GetMapping("/editasiakas/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String editAsiakas(@PathVariable("id") Long asiakasid, Model model) {
+        model.addAttribute("asiakas", arepository.findById(asiakasid));
+        return "muokkaaasiakas";
     }
 
     @GetMapping("/edit/{id}")
