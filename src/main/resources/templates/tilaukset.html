@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tilaukset</title>
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
+    <script>
+        // Poiston varmistus funktio
+        function confirmDelete(event) {
+            event.preventDefault();
+            const confirmation = confirm("Haluatko varmasti poistaa tämän tuotteen?");
+            if (confirmation) {
+                window.location.href = event.target.href; // Siirtyy poistolinkkiin, jos vahvistettu
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <div style="padding-right: 5%; padding-left: 5%; padding-top: 5%;">
+        <div style="display: flex; justify-content: flex-end;">
+            <a class="btn btn-primary" href="/index">Takaisin etusivulle</a>
+        </div>
+
+        <div>
+            <h1>Tilaus</h1>
+        </div>
+
+        <div style="display: flex; flex-direction: row; justify-content: space-between;">
+            <div style="width: 100%;">
+                <form th:object="${tilaus}" th:action="@{savet}" action="#" method="post" style="display: flex; gap: 9px; align-items: center; flex-wrap: wrap; flex-direction: row;">
+                    <label for="asiakas">Asiakas</label>
+                    <select id="asiakas" th:field="*{asiakas}">
+                        <option th:each="asiakas : ${asiakkaat}" th:value="${asiakas.asiakasid}" th:text="${asiakas.sukunimi} + ' ' + ${asiakas.etunimi}"></option>
+                    </select>
+
+                    <label for="tuote">Tuote</label>
+                    <select id="tuote" th:field="*{tuote}">
+                        <option th:each="tuote : ${tuotteet}" th:value="${tuote.tuoteId}" th:text="${tuote.nimi}"></option>
+                    </select>
+            
+                    <input type="submit" value="Save" />
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; padding-right: 5%; padding-left: 5%; padding-top: 5%;">
+        <h2>Asiakkaat</h2>
+    </div>
+
+    <div style="padding-left: 5%; padding-right: 5%; padding-top: 2%;">
+        <table class="table table-striped" style="margin: 0 auto;">
+            <thead>
+                <tr>
+                    <th>Tilausnumero</th>
+                    <th>Asiakas</th>
+                    <th>Tuote</th>
+                    <th sec:authorize="hasAuthority('ADMIN')">Toiminnot</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="tilaus : ${tilaukset}">
+                    <td th:text="${tilaus.tilausid}"></td>
+                    <td th:text="${tilaus.asiakas.sukunimi} + ' ' + ${tilaus.asiakas.etunimi}"></td>
+                    <td th:text="${tilaus.tuote.nimi}"></td>
+                    <td sec:authorize="hasAuthority('ADMIN')">
+                        <a class="btn btn-danger" th:href="@{'/deletetilaus/' + ${tilaus.tilausid}}" onclick="confirmDelete(event)">Poista</a>
+                        <a class="btn btn-primary" th:href="@{'/edittilaus/' + ${tilaus.tilausid}}">Muokkaa</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

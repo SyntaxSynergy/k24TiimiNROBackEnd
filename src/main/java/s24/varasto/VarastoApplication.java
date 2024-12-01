@@ -1,10 +1,7 @@
 package s24.varasto;
 
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import s24.varasto.domain.*;
 
 @SpringBootApplication
 
@@ -13,16 +10,20 @@ public class VarastoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(VarastoApplication.class, args);
 	}
-/* 
+
+	/* 
 	@Bean
 	public CommandLineRunner demo(
 		TuoteRepository tuoteRepository, 
 		ValmistajaRepository valmistajaRepository, 
 		UserRepository userRepository,
-		TuotetyyppiRepository tuotetyyppiRepository) {
+		TuotetyyppiRepository tuotetyyppiRepository
+		AsiakasRepository asiakasRepository,
+		TilausRepository tilausRepository
+		)
+		{
 
 		return (args) -> {
-			
 			TuoteTyyppi vaate = new TuoteTyyppi("VAATE");
 			TuoteTyyppi lelu = new TuoteTyyppi("LELU");
 			TuoteTyyppi ruoka = new TuoteTyyppi("RUOKA");
@@ -53,6 +54,6 @@ public class VarastoApplication {
 		
 			tuoteRepository.findAll().forEach(System.out::println);
 		};
-	}
-		*/
+	};
+	*/
 }

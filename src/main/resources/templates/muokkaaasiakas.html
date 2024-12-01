@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" 
+xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muokkaa asiakasta</title>
+</head>
+<body>
+    <h1>Asiakkaan tietojen muokkaus</h1>
+    <form th:object="${asiakas}" th:action="@{../savea}" action="#" method="post">
+        <label for="id"></label>
+        <input type="hidden" id="id" th:field="*{asiakasid}" readonly="readonly" />
+
+        <label for="sukunimi">Sukunimi</label>
+        <input type="text" th:field="*{sukunimi}" />
+        <div class="error" th:if="${#fields.hasErrors('sukunimi')}" th:errors="*{sukunimi}"></div>
+
+        <label for="etunimi">Etunimi</label>
+        <input type="text" th:field="*{etunimi}" />
+        <div class="error" th:if="${#fields.hasErrors('etunimi')}" th:errors="*{etunimi}"></div>
+
+        <label for="puhelinnumero">Puhelinnumero</label>
+        <input type="text" th:field="*{puhelinnumero}" />
+        <div class="error" th:if="${#fields.hasErrors('puhelinnumero')}" th:errors="*{puhelinnumero}"></div>
+
+        <label for="sahkoposti">Sähköposti</label>
+        <input type="text" th:field="*{sahkoposti}" />
+        <div class="error" th:if="${#fields.hasErrors('sahkoposti')}" th:errors="*{sahkoposti}"></div>
+
+        <label for="katuosoite">Katuosoite</label>
+        <input type="text" th:field="*{katuosoite}" />
+        <div class="error" th:if="${#fields.hasErrors('katuosoite')}" th:errors="*{katuosoite}"></div>
+
+        <label for="postinumero">Postinumero</label>
+        <input type="text" th:field="*{postinumero}" />
+        <div class="error" th:if="${#fields.hasErrors('postinumero')}" th:errors="*{postinumero}"></div>
+
+        <label for="postitoimipaikka">Postitoimipaikka</label>
+        <input type="text" th:field="*{postitoimipaikka}" />
+        <div class="error" th:if="${#fields.hasErrors('postitoimipaikka')}" th:errors="*{postitoimipaikka}"></div>
+
+        <input type="submit" class="btn btn-success" value="Save"></input>
+    </form>
+    <a href="/asiakkaat">Takaisin asiakkaisiin</a>
+</body>
+</html>
