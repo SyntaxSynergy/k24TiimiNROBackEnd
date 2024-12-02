@@ -39,10 +39,18 @@ public class VarastoController {
     @Autowired
     private TilausRepository trepository;
 
+
+
+    @GetMapping("/")
+    public String etusivu() {
+        return "etusivu";
+    }
+    
     @RequestMapping(value = "/login")
     public String login() {
         return "login";
     }
+
 
     @GetMapping("/index")
     public String index() {

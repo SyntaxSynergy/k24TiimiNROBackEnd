@@ -42,9 +42,11 @@ public class WebSecurityConfig  {
 	public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 
 		http
+		
 		.csrf(csrf -> csrf.ignoringRequestMatchers(antMatcher("/api/users"))
 		)
 		.authorizeHttpRequests(authorize -> authorize
+		        .requestMatchers(antMatcher("/")).permitAll() 
 				.requestMatchers(antMatcher("/css/**")).permitAll()
 				.requestMatchers(antMatcher("/api/users/**")).permitAll()
 				.requestMatchers(HttpMethod.POST, "/api/users").permitAll()
