@@ -26,7 +26,7 @@ public class WebSecurityConfig  {
    @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.addAllowedOrigin("https://maajoo.github.io"); // URL sallittu tekemään pyyntöjä tälle palvelimelle
+        corsConfig.addAllowedOrigin("https://syntaxsynergy.github.io"); // URL sallittu tekemään pyyntöjä tälle palvelimelle
         corsConfig.addAllowedMethod("*"); //Antaa luvan kaikille HTTP pyynnöille (GET, POST, etc.)
         corsConfig.addAllowedHeader("*"); // HTTP-otsikot ovar sallittuja pyynnöstä
         corsConfig.setAllowCredentials(true); // Evästeiden ja HTTP-autentikoinnin, lähettämisen pyynnöissä
