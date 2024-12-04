@@ -43,10 +43,7 @@ public class WebSecurityConfig  {
 
 		http
 		
-		.csrf(csrf -> csrf
-		.ignoringRequestMatchers(antMatcher("/api/tilaukses"))
-		.ignoringRequestMatchers(antMatcher("/api/asiakases"))
-		.ignoringRequestMatchers(antMatcher("/api/tuotes"))
+		.csrf(csrf -> csrf.disable()
 		)
 		.authorizeHttpRequests(authorize -> authorize
 		        .requestMatchers(antMatcher("/")).permitAll() 
