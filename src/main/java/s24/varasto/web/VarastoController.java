@@ -162,8 +162,9 @@ public String save(@Valid @ModelAttribute Tuote tuote, BindingResult bindingResu
 
         return "tuotteet"; 
     }
-        if ("LELU".equals(tuote.getTyyppi().getTyyppiNimi())) {
-            tuote.setKoko(null); // Lelulle ei tarvita kokoa
+    if ("LELU".equals(tuote.getTyyppi().getTyyppiNimi()) || 
+        "RUOKA".equals(tuote.getTyyppi().getTyyppiNimi())) {
+        tuote.setKoko(null); // LELU tai RUOKA ei tarvitse kokoa
         }
         tuoteRepository.save(tuote);
 
