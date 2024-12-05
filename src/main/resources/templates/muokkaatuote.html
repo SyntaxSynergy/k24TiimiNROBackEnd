@@ -42,7 +42,7 @@ xmlns:th="http://www.thymeleaf.org">
 
 
         <label for="tyyppi">Tyyppi</label>
-        <select th:field="*{tyyppi}">
+        <select  id="tyyppiSelect" th:field="*{tyyppi}">
             <option th:each="tyyppi : ${tuotetyypit}" 
                     th:value="${tyyppi.tyyppiId}" 
                     th:text="${tyyppi.tyyppiNimi}"></option>

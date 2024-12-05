@@ -230,12 +230,7 @@ public String save(@Valid @ModelAttribute Tuote tuote, BindingResult bindingResu
     @GetMapping("/edit/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public String editTuote(@PathVariable("id") Long tuoteId, Model model) {
-        Tuote tuote = tuoteRepository.findById(tuoteId)
-        .orElseThrow(() -> new IllegalArgumentException("Virheellinen tuote ID"));
         
-        if ("LELU".equals(tuote.getTyyppi().getTyyppiNimi()) || "RUOKA".equals(tuote.getTyyppi().getTyyppiNimi())) {
-            tuote.setKoko(null);  // Set Koko to null jos on RUOKA tai LELU
-        }
         List<Koko> koot = Arrays.asList(Koko.values());
         model.addAttribute("tuote", tuoteRepository.findById(tuoteId));
         model.addAttribute("valmistajat", vrepository.findAll());
