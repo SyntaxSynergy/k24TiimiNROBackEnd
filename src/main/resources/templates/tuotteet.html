@@ -17,16 +17,18 @@
             }
         }
 
-        // Funktio joka piilottaa koko optionin jos "LELU" on valittu
+        // Funktio joka piilottaa koko optionin jos "LELU" tai "RUOKA" on valittu
         function toggleKokoField() {
-            const tyyppiSelect = document.getElementById("tyyppiSelect");
-            const kokoField = document.getElementById("kokoField");
+        const tyyppiSelect = document.getElementById("tyyppiSelect");
+        const kokoField = document.getElementById("kokoField");
 
-            if (selectedValue === "LELU" || selectedValue === "RUOKA") {
-            kokoField.style.display = "none";
-            } else {
-            kokoField.style.display = "block";
-            }
+        const selectedValue = tyyppiSelect.options[tyyppiSelect.selectedIndex].text;
+
+        if (selectedValue === "LELU" || selectedValue === "RUOKA") {
+        kokoField.style.display = "none";
+        } else {
+        kokoField.style.display = "block";
+         }
         }
 
         // Varmistaa että koko valikko tulee näkyviin heti kun lelu on valittu
