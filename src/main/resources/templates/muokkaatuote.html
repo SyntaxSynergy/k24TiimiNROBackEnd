@@ -7,6 +7,28 @@ xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muokkaa tuote</title>
+
+    <script>
+         // Funktio joka piilottaa koko optionin jos "LELU" tai "RUOKA" on valittu
+        function toggleKokoField() {
+        const tyyppiSelect = document.getElementById("tyyppiSelect");
+        const kokoField = document.getElementById("kokoField");
+
+        const selectedValue = tyyppiSelect.options[tyyppiSelect.selectedIndex].text;
+
+        if (selectedValue === "LELU" || selectedValue === "RUOKA") {
+        kokoField.style.display = "none";
+        } else {
+        kokoField.style.display = "block";
+         }
+        }
+
+        // Varmistaa että koko valikko tulee näkyviin heti kun lelu on valittu
+        document.addEventListener("DOMContentLoaded", function() {
+            toggleKokoField(); 
+            document.getElementById("tyyppiSelect").addEventListener("change", toggleKokoField); 
+        });
+    </script>
 </head>
 <body>
     <h1>Tuotteen tietojen muokkaus</h1>
@@ -33,13 +55,13 @@ xmlns:th="http://www.thymeleaf.org">
         <input type="text" th:field="*{vari}" />
         <div class="error" th:if="${#fields.hasErrors('vari')}" th:errors="*{vari}"></div>
 
-
+        <div style="display: flex;"id="kokoField"  >
         <label for="koko">Koko</label>
         <select th:field="*{koko}">
             <option th:each="koko : ${koot}" th:value="${koko}" th:text="${koko}"></option>
         </select>
         <div class="error" th:if="${#fields.hasErrors('koko')}" th:errors="*{koko}"></div>
-
+    </div>
         
 
         <label for="hinta">Hinta</label>
