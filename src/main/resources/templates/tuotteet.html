@@ -22,10 +22,10 @@
             const tyyppiSelect = document.getElementById("tyyppiSelect");
             const kokoField = document.getElementById("kokoField");
 
-            if (tyyppiSelect.options[tyyppiSelect.selectedIndex].text === "LELU") {
-                kokoField.style.display = "none"; 
+            if (selectedValue === "LELU" || selectedValue === "RUOKA") {
+            kokoField.style.display = "none";
             } else {
-                kokoField.style.display = "block"; 
+            kokoField.style.display = "block";
             }
         }
 
