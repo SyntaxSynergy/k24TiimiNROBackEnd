@@ -18,12 +18,29 @@
             }
         };
     </script>
+
+<style>
+    .pink-table {
+        background-color: #ffe4e1;
+        border: 1px solid #ffccd5;
+    }
+
+    .pink-table th {
+        background-color: #ffccd5;
+        color: #5a5a5a;
+    }
+
+    .pink-table tr:nth-child(even) {
+        background-color: #ffebee;
+    }
+</style>
+
 </head>
 
 <body>
     <div style="padding-right: 5%; padding-left: 5%; padding-top: 5%;">
         <div style="display: flex; justify-content: flex-end;">
-            <a class="btn btn-primary" href="/index">Takaisin etusivulle</a>
+            <a class="btn btn-primary btn-custom" href="/index">Takaisin etusivulle</a>
         </div>
 
         <div>
@@ -54,7 +71,7 @@
     </div>
 
     <div style="padding-left: 5%; padding-right: 5%; padding-top: 2%;">
-        <table class="table table-striped" style="margin: 0 auto;">
+        <table class="table pink-table table-hover" style="margin: 0 auto;">
             <thead>
                 <tr>
                     <th>Tilausnumero</th>

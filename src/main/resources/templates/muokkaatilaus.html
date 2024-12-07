@@ -16,17 +16,17 @@ xmlns:th="http://www.thymeleaf.org">
         <input type="hidden" id="id" th:field="*{tilausid}" readonly="readonly" />
 
         <label for="asiakas">Asiakas</label>
-        <select id="asiakas" th:field="*{asiakas}">
+        <select id="asiakas" th:field="*{asiakas}" class="pink-input">
             <option th:each="asiakas : ${asiakkaat}" th:value="${asiakas.asiakasid}" th:text="${asiakas.sukunimi} + ' ' + ${asiakas.etunimi}"></option>
         </select>
 
         <label for="tuote">Tuote</label>
-        <select id="tuote" th:field="*{tuote}">
+        <select id="tuote" th:field="*{tuote}" class="pink-input">
             <option th:each="tuote : ${tuotteet}" th:value="${tuote.tuoteId}" th:text="${tuote.nimi}"></option>
         </select>
 
-        <input type="submit" class="btn btn-success" value="Save"></input>
+        <input type="submit" class="pink-input" value="Save"></input>
     </form>
-    <a href="/tilaukset">Takaisin asiakkaisiin</a>
+    <a class="pink-input" href="/tilaukset">Takaisin asiakkaisiin</a>
 </body>
 </html>
