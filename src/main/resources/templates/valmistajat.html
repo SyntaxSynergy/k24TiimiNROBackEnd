@@ -35,29 +35,27 @@
 
         <div style="display: flex; flex-direction: row; justify-content: space-between;">
             <div>
-                <form th:object="${valmistaja}" th:action="@{saveval}" action="#" method="post">
+                <form th:object="${valmistaja}" th:action="@{saveval}" method="post">
                     <label for="valmistajaNimi">Valmistajan nimi</label>
                     <input type="text" id="valmistajaNimi" class="pink-input" th:field="*{valmistajaNimi}" />
                     <div th:if="${#fields.hasErrors('valmistajaNimi')}" th:errors="*{valmistajaNimi}"
                         class="text-danger"></div>
+
+                    <input type="submit" class="pink-input" value="Save" />
+                </form>
             </div>
-
-            <input type="submit" class="pink-input" value="Save"></input>
         </div>
 
-        <div style="display: flex; justify-content: flex-end;">
-            <a class="btn btn-primary btn-custom href="/index">Takaisin etusivulle</a>
+        <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+            <a class="btn btn-primary btn-custom" href="/index">Takaisin etusivulle</a>
         </div>
-
-    </div>
     </div>
 
-    <div
-        style="display: flex; justify-content: space-between; align-items: center; padding-right: 5%; padding-left: 5%; padding-top: 5%;">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding-right: 5%; padding-left: 5%; padding-top: 5%;">
         <h2>Valmistajat</h2>
-        <a class="btn btn-danger" href="/deleteEmptyvalmistajat" onclick="confirmDeleteEmptyValmistajat(event)">Poista
-            käyttämättömät
-            valmistajat</a>
+        <a class="btn btn-danger" href="/deleteEmptyvalmistajat" onclick="confirmDeleteEmptyValmistajat(event)">
+            Poista käyttämättömät valmistajat
+        </a>
     </div>
 
     <div style="padding-left: 5%; padding-right: 5%; padding-top: 2%;">
@@ -74,18 +72,20 @@
                     <td th:text="${valmistaja.valmistajaNimi}"></td>
                     <td th:text="${valmistaja.tuotteet.size()}"></td>
                     <td sec:authorize="hasAuthority('ADMIN')">
-                        <a class="btn btn-danger" href="#"
-                            th:href="@{/deletevalmistaja/{id}(id=${valmistaja.valmistajaId})}"
-                            onclick="confirmDelete(event)">Poista</a>
-                        <a class="btn btn-warning" href="#"
-                            th:href="@{/valmistajanTuotteet/{id}(id=${valmistaja.valmistajaId})}">Valmistajan
-                            tuotteet</a>
+                        <a class="btn btn-danger" href="#" 
+                           th:href="@{/deletevalmistaja/{id}(id=${valmistaja.valmistajaId})}" 
+                           onclick="confirmDelete(event)">
+                            Poista
+                        </a>
+                        <a class="btn btn-warning" href="#" 
+                           th:href="@{/valmistajanTuotteet/{id}(id=${valmistaja.valmistajaId})}">
+                            Valmistajan tuotteet
+                        </a>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    </form>
 </body>
 
 </html>
