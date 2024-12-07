@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" 
-xmlns:th="http://www.thymeleaf.org">
-<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 <link rel="stylesheet" href="/css/styles.css">
 
 <head>
@@ -10,70 +9,63 @@ xmlns:th="http://www.thymeleaf.org">
     <title>Muokkaa tuote</title>
 
     <script>
-         // Funktio joka piilottaa koko optionin jos "LELU" tai "RUOKA" on valittu
+        // Funktio joka piilottaa koko optionin jos "LELU" tai "RUOKA" on valittu
         function toggleKokoField() {
-        const tyyppiSelect = document.getElementById("tyyppiSelect");
-        const kokoField = document.getElementById("kokoField");
+            const tyyppiSelect = document.getElementById("tyyppiSelect");
+            const kokoField = document.getElementById("kokoField");
 
-        const selectedValue = tyyppiSelect.options[tyyppiSelect.selectedIndex].text;
+            const selectedValue = tyyppiSelect.options[tyyppiSelect.selectedIndex].text;
 
-        if (selectedValue === "LELU" || selectedValue === "RUOKA") {
-        kokoField.style.display = "none";
-        } else {
-        kokoField.style.display = "block";
-         }
+            if (selectedValue === "LELU" || selectedValue === "RUOKA") {
+                kokoField.style.display = "none";
+            } else {
+                kokoField.style.display = "block";
+            }
         }
 
         // Varmistaa että koko valikko tulee näkyviin heti kun lelu on valittu
-        document.addEventListener("DOMContentLoaded", function() {
-            toggleKokoField(); 
-            document.getElementById("tyyppiSelect").addEventListener("change", toggleKokoField); 
+        document.addEventListener("DOMContentLoaded", function () {
+            toggleKokoField();
+            document.getElementById("tyyppiSelect").addEventListener("change", toggleKokoField);
         });
     </script>
 </head>
+
 <body>
     <h1>Tuotteen tietojen muokkaus</h1>
     <form th:object="${tuote}" th:action="@{../save}" action="#" method="post">
         <label for="id"></label>
-        <input type="hidden" id="id" th:field="*{tuoteId}" readonly="readonly" />
+        <input type="hidden" id="id" th:field="*{tuoteId}" class="pink-input" readonly="readonly" />
 
         <label for="nimi">Nimi</label>
         <input type="text" class="pink-input" th:field="*{nimi}" />
         <div class="error" th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}"></div>
 
-
         <label for="tyyppi">Tyyppi</label>
-        <select  id="tyyppiSelect" th:field="*{tyyppi}" class="pink-input">
-            <option th:each="tyyppi : ${tuotetyypit}" 
-                    th:value="${tyyppi.tyyppiId}" 
-                    th:text="${tyyppi.tyyppiNimi}"></option>
+        <select id="tyyppiSelect" th:field="*{tyyppi}" class="pink-input">
+            <option th:each="tyyppi : ${tuotetyypit}" th:value="${tyyppi.tyyppiId}" th:text="${tyyppi.tyyppiNimi}"></option>
         </select>
         <div class="error" th:if="${#fields.hasErrors('tyyppi')}" th:errors="*{tyyppi}"></div>
 
-        
-
         <label for="vari">Väri</label>
-        <input type="text" th:field="*{vari}" class="pink-input"/>
+        <input type="text" th:field="*{vari}" class="pink-input" />
         <div class="error" th:if="${#fields.hasErrors('vari')}" th:errors="*{vari}"></div>
 
-        <div style="display: flex;"id="kokoField"  >
-        <label for="koko">Koko</label>
-        <select th:field="*{koko}" class="pink-input">
-            <option th:each="koko : ${koot}" th:value="${koko}" th:text="${koko}"></option>
-        </select>
-        <div class="error" th:if="${#fields.hasErrors('koko')}" th:errors="*{koko}"></div>
-    </div>
-        
+        <div style="display: flex;" id="kokoField">
+            <label for="koko">Koko</label>
+            <select th:field="*{koko}" class="pink-input">
+                <option th:each="koko : ${koot}" th:value="${koko}" th:text="${koko}"></option>
+            </select>
+            <div class="error" th:if="${#fields.hasErrors('koko')}" th:errors="*{koko}"></div>
+        </div>
 
         <label for="hinta">Hinta</label>
-        <input type="text" th:field="*{hinta}" class="pink-input"/>
+        <input type="text" th:field="*{hinta}" class="pink-input" />
         <div class="error" th:if="${#fields.hasErrors('hinta')}" th:errors="*{hinta}"></div>
 
-
         <label for="varastossa">Varastossa</label>
-        <input type="text" th:field="*{varastomaara}" class="pink-input"/>
+        <input type="text" th:field="*{varastomaara}" class="pink-input" />
         <div class="error" th:if="${#fields.hasErrors('varastomaara')}" th:errors="*{varastomaara}"></div>
-
 
         <label for="valmistaja">Valmistaja</label>
         <select th:field="*{valmistaja}" class="pink-input">
@@ -81,9 +73,9 @@ xmlns:th="http://www.thymeleaf.org">
         </select>
         <div class="error" th:if="${#fields.hasErrors('valmistaja')}" th:errors="*{valmistaja}"></div>
 
-
         <input type="submit" class="pink-input" value="Save"></input>
     </form>
-    <a class="btn btn-primary btn-custom href="/tuotteet">Takaisin tuotelistaukseen</a>
+    <a class="btn btn-primary btn-custom" href="/tuotteet">Takaisin tuotelistaukseen</a>
 </body>
+
 </html>
