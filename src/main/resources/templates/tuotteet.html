@@ -43,7 +43,7 @@
 <body>
     <div style="padding-right: 5%; padding-left: 5%; padding-top: 5%;">
         <div style="display: flex; justify-content: flex-end;">
-            <a class="btn btn-primary rounded-pill" href="/index">Takaisin etusivulle</a>
+            <a class="btn btn-primary btn-custom href="/index">Takaisin etusivulle</a>
         </div>
 
         <div>
@@ -54,7 +54,7 @@
             <div style="width: 100%;">
                 <form th:object="${tuote}" th:action="@{save}" action="#" method="post" style="display: flex; gap: 9px; align-items: center; flex-wrap: wrap; flex-direction: row;">
                     <label for="title">Nimi</label>
-                    <input type="text" id="title" th:field="*{nimi}" class="form-control rounded-pill" />
+                    <input type="text" id="title" th:field="*{nimi}" class="form-control rounded-pill w-auto" />
                     <span th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}"></span>
 
                     <label for="tyyppi">Tyyppi</label>
@@ -100,7 +100,7 @@
     </div>
 
     <div style="padding-left: 5%; padding-right: 5%; padding-top: 2%;">
-        <table class="table table-striped" style="margin: 0 auto;">
+        <table class="table" style="margin: 0 auto;">
             <thead>
                 <tr>
                     <th>Nimi</th>
@@ -124,7 +124,7 @@
                     <td th:text="${tuote.valmistaja}"></td>
                     <td sec:authorize="hasAuthority('ADMIN')">
                         <a class="btn btn-warning rounded-pill" th:href="@{/edit/{id}(id=${tuote.tuoteId})}">Muokkaa</a>
-                        <a class="btn btn-danger rounded-pill" href="#" th:href="@{/delete/{id}(id=${tuote.tuoteId})}" onclick="confirmDelete(event)">Poista</a>
+                        <a class="btn btn-secondary rounded-pill" href="#" th:href="@{/delete/{id}(id=${tuote.tuoteId})}" onclick="confirmDelete(event)">Poista</a>
                     </td>
                 </tr>
             </tbody>
