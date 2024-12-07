@@ -12,14 +12,15 @@
 <body>
     <div style="padding-right: 5%; padding-left: 5%; padding-top: 5%;">
         <div>
-            <h1 th:text="'Valmistajan ' + ${valmistaja.valmistajaNimi} + ' Tuotteet'">
-            </h1>
-                <a class="btn btn-primary btn-custom href="/index">Takaisin etusivulle</a>
+            <h1 th:text="'Valmistajan ' + ${valmistaja.valmistajaNimi} + ' Tuotteet'"></h1>
         </div>
 
         <div style="display: flex; justify-content: flex-end;">
             <div style="margin-right: 20px;">
                 <a class="btn btn-warning" href="/valmistajat">Takaisin valmistajalistaukseen</a>
+            </div>
+            <div>
+                <a class="btn btn-primary btn-custom href="/index">Takaisin etusivulle</a>
             </div>
         </div>
 
