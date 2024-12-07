@@ -51,16 +51,16 @@
             <div style="width: 100%;">
                 <form th:object="${tilaus}" th:action="@{savet}" action="#" method="post" style="display: flex; gap: 9px; align-items: center; flex-wrap: wrap; flex-direction: row;">
                     <label for="asiakas">Asiakas</label>
-                    <select id="asiakas" th:field="*{asiakas}">
+                    <select id="asiakas" th:field="*{asiakas}" class="pink-input">
                         <option th:each="asiakas : ${asiakkaat}" th:value="${asiakas.asiakasid}" th:text="${asiakas.sukunimi} + ' ' + ${asiakas.etunimi}"></option>
                     </select>
 
                     <label for="tuote">Tuote</label>
-                    <select id="tuote" th:field="*{tuote}">
+                    <select id="tuote" th:field="*{tuote}" class="pink-input">
                         <option th:each="tuote : ${tuotteet}" th:value="${tuote.tuoteId}" th:text="${tuote.nimi}"></option>
                     </select>
             
-                    <input type="submit" value="Save" />
+                    <input type="submit" class="pink-input" value="Save" />
                 </form>
             </div>
         </div>
@@ -87,7 +87,7 @@
                     <td th:text="${tilaus.tuote.nimi}"></td>
                     <td sec:authorize="hasAuthority('ADMIN')">
                         <a class="btn btn-danger" th:href="@{'/deletetilaus/' + ${tilaus.tilausid}}" onclick="confirmDelete(event)">Poista</a>
-                        <a class="btn btn-primary" th:href="@{'/edittilaus/' + ${tilaus.tilausid}}">Muokkaa</a>
+                        <a class="btn btn-primary btn-custom" th:href="@{'/edittilaus/' + ${tilaus.tilausid}}">Muokkaa</a>
                     </td>
                 </tr>
             </tbody>
