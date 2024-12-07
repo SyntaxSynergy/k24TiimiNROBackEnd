@@ -1,0 +1,7 @@
+body {
+    background-color: #ed789ab1; /* Light background */
+}
+.btn-primary {
+    background-color: #0057b393; /* Darker blue for buttons */
+    border-color: #000000;
+}
