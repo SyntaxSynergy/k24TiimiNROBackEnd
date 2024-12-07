@@ -19,7 +19,7 @@ body {
 }
 
 .pink-input{
-    background-color: pink;
+    background-color: rgba(255, 192, 203, 0.216);
     border: 1px solid black;
     color: black;
     border-radius: 5px;
@@ -27,8 +27,7 @@ body {
 }
 .blended-border {
     width: 100%;
-    max-width: 500px; /* Adjust to your desired size */
-    border-radius: 15px; /* Rounded corners */
+    margin-top: -5px;
     box-shadow: 0 0 15px 5px rgba(244, 192, 204, 0.5); /* Soft pink shadow */
 }
 
