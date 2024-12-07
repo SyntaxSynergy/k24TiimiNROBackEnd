@@ -71,7 +71,7 @@ xmlns:th="http://www.thymeleaf.org">
 
 
         <label for="varastossa">Varastossa</label>
-        <input type="text" th:field="*{varastomaara}" class="pink-input rounded-pill"/>
+        <input type="text" th:field="*{varastomaara}" class="pink-input"/>
         <div class="error" th:if="${#fields.hasErrors('varastomaara')}" th:errors="*{varastomaara}"></div>
 
 
