@@ -8,6 +8,7 @@
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
     <link rel="stylesheet" href="/css/styles.css">
 
+
     <script>
         // Poiston varmistus funktio
         function confirmDelete(event) {
@@ -20,22 +21,22 @@
 
         // Funktio joka piilottaa koko optionin jos "LELU" tai "RUOKA" on valittu
         function toggleKokoField() {
-            const tyyppiSelect = document.getElementById("tyyppiSelect");
-            const kokoField = document.getElementById("kokoField");
+        const tyyppiSelect = document.getElementById("tyyppiSelect");
+        const kokoField = document.getElementById("kokoField");
 
-            const selectedValue = tyyppiSelect.options[tyyppiSelect.selectedIndex].text;
+        const selectedValue = tyyppiSelect.options[tyyppiSelect.selectedIndex].text;
 
-            if (selectedValue === "LELU" || selectedValue === "RUOKA") {
-                kokoField.style.display = "none";
-            } else {
-                kokoField.style.display = "block";
-            }
+        if (selectedValue === "LELU" || selectedValue === "RUOKA") {
+        kokoField.style.display = "none";
+        } else {
+        kokoField.style.display = "block";
+         }
         }
 
         // Varmistaa että koko valikko tulee näkyviin heti kun lelu on valittu
-        document.addEventListener("DOMContentLoaded", function () {
-            toggleKokoField();
-            document.getElementById("tyyppiSelect").addEventListener("change", toggleKokoField);
+        document.addEventListener("DOMContentLoaded", function() {
+            toggleKokoField(); 
+            document.getElementById("tyyppiSelect").addEventListener("change", toggleKokoField); 
         });
     </script>
 </head>
@@ -43,7 +44,7 @@
 <body>
     <div style="padding-right: 5%; padding-left: 5%; padding-top: 5%;">
         <div style="display: flex; justify-content: flex-end;">
-            <a class="btn btn-primary href="/index">Takaisin etusivulle</a>
+            <a class="btn btn-primary" href="/index">Takaisin etusivulle</a>
         </div>
 
         <div>
@@ -54,44 +55,47 @@
             <div style="width: 100%;">
                 <form th:object="${tuote}" th:action="@{save}" action="#" method="post" style="display: flex; gap: 9px; align-items: center; flex-wrap: wrap; flex-direction: row;">
                     <label for="title">Nimi</label>
-                    <input type="text" id="title" th:field="*{nimi}" class="form-control rounded-pill" />
+                    <input type="text" id="title" th:field="*{nimi}" />
                     <span th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}"></span>
-
+                    
                     <label for="tyyppi">Tyyppi</label>
-                    <select id="tyyppiSelect" th:field="*{tyyppi}" class="form-select rounded-pill">
+                    <select id="tyyppiSelect" th:field="*{tyyppi}">
                         <option th:each="tyyppi : ${tuotetyypit}" th:value="${tyyppi.tyyppiId}" th:text="${tyyppi.tyyppiNimi}"></option>
                     </select>
                     <span th:if="${#fields.hasErrors('tyyppi')}" th:errors="*{tyyppi}"></span>
 
                     <label for="vari">Väri</label>
-                    <input type="text" id="author" th:field="*{vari}" class="form-control rounded-pill" />
+                    <input type="text" id="author" th:field="*{vari}" />
                     <span th:if="${#fields.hasErrors('vari')}" th:errors="*{vari}"></span>
+                    
 
                     <label for="hinta">Hinta</label>
-                    <input type="text" th:field="*{hinta}" class="form-control rounded-pill" />
+                    <input type="text" th:field="*{hinta}" />
                     <span th:if="${#fields.hasErrors('hinta')}" th:errors="*{hinta}"></span>
 
                     <label for="varastossa">Varastossa</label>
-                    <input type="text" th:field="*{varastomaara}" class="form-control rounded-pill" />
+                    <input type="text" th:field="*{varastomaara}" />
                     <span th:if="${#fields.hasErrors('varastomaara')}" th:errors="*{varastomaara}"></span>
 
                     <label for="valmistaja">Valmistaja</label>
-                    <select th:field="*{valmistaja}" class="form-select rounded-pill">
+                    <select th:field="*{valmistaja}">
                         <option th:each="valmistaja : ${valmistajat}" th:value="${valmistaja.valmistajaId}" th:text="${valmistaja.valmistajaNimi}"></option>
                     </select>
                     <span th:if="${#fields.hasErrors('valmistaja')}" th:errors="*{valmistaja}"></span>
 
-                    <div style="display: flex;" id="kokoField">
+                    <div style="display: flex;"id="kokoField"  >
                         <label id="kokoField" for="koko">Koko</label>
-                        <select th:field="*{koko}" class="form-select rounded-pill">
+                        <select th:field="*{koko}">
                             <option th:each="koko : ${koot}" th:value="${koko}" th:text="${koko}"></option>
                         </select>
                         <span th:if="${#fields.hasErrors('koko')}" th:errors="*{koko}"></span>
                     </div>
-
-                    <input type="submit" value="Save" class="btn btn-primary rounded-pill" />
+                    <input type="submit" value="Save" />
+                   
                 </form>
             </div>
+
+           
         </div>
     </div>
 
@@ -100,7 +104,7 @@
     </div>
 
     <div style="padding-left: 5%; padding-right: 5%; padding-top: 2%;">
-        <table class="table" style="margin: 0 auto;">
+        <table class="table table-striped" style="margin: 0 auto;">
             <thead>
                 <tr>
                     <th>Nimi</th>
@@ -123,13 +127,14 @@
                     <td th:text="${tuote.varastomaara}"></td>
                     <td th:text="${tuote.valmistaja}"></td>
                     <td sec:authorize="hasAuthority('ADMIN')">
-                        <a class="btn btn-danger rounded-pill" th:href="@{/edit/{id}(id=${tuote.tuoteId})}">Muokkaa</a>
-                        <a class="btn btn-warning rounded-pill" href="#" th:href="@{/delete/{id}(id=${tuote.tuoteId})}" onclick="confirmDelete(event)">Poista</a>
+                        <a class="btn btn-warning" th:href="@{/edit/{id}(id=${tuote.tuoteId})}">Muokkaa</a>
+                        <a class="btn btn-danger" href="#" th:href="@{/delete/{id}(id=${tuote.tuoteId})}" onclick="confirmDelete(event)">Poista</a>
                     </td>
                 </tr>
             </tbody>
         </table>
+    
     </div>
 </body>
 
-</html>
+</html> 
