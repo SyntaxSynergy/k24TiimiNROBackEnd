@@ -37,12 +37,12 @@
             <div>
                 <form th:object="${valmistaja}" th:action="@{saveval}" action="#" method="post">
                     <label for="valmistajaNimi">Valmistajan nimi</label>
-                    <input type="text" id="valmistajaNimi" th:field="*{valmistajaNimi}" />
+                    <input type="text" id="valmistajaNimi" class="pink-input" th:field="*{valmistajaNimi}" />
                     <div th:if="${#fields.hasErrors('valmistajaNimi')}" th:errors="*{valmistajaNimi}"
                         class="text-danger"></div>
             </div>
 
-            <input type="submit" value="Save"></input>
+            <input type="submit" class="pink-input" value="Save"></input>
         </div>
 
         <div style="display: flex; justify-content: flex-end;">
@@ -61,7 +61,7 @@
     </div>
 
     <div style="padding-left: 5%; padding-right: 5%; padding-top: 2%;">
-        <table class="table table-hover" style="margin: 0 auto;">
+        <table class="table pink-table table-hover" style="margin: 0 auto;">
             <thead>
                 <tr>
                     <th>Valmistaja</th>
