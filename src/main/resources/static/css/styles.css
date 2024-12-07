@@ -25,3 +25,15 @@ body {
     border-radius: 5px;
     padding: 5px 10px;
 }
+.blend-container {
+    background-color: #f4c0cc; /* Light pink background */
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.blend-image {
+    width: 100%;
+    height: auto;
+    mix-blend-mode: multiply; /* Experiment with different modes like overlay, screen, etc. */
+}
