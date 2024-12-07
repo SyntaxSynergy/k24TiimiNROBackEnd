@@ -162,8 +162,9 @@ public String save(@Valid @ModelAttribute Tuote tuote, BindingResult bindingResu
 
         return "tuotteet"; 
     }
-        if ("LELU".equals(tuote.getTyyppi().getTyyppiNimi())) {
-            tuote.setKoko(null); // Lelulle ei tarvita kokoa
+    if ("LELU".equals(tuote.getTyyppi().getTyyppiNimi()) || 
+        "RUOKA".equals(tuote.getTyyppi().getTyyppiNimi())) {
+        tuote.setKoko(null); // LELU tai RUOKA ei tarvitse kokoa
         }
         tuoteRepository.save(tuote);
 
@@ -229,6 +230,7 @@ public String save(@Valid @ModelAttribute Tuote tuote, BindingResult bindingResu
     @GetMapping("/edit/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public String editTuote(@PathVariable("id") Long tuoteId, Model model) {
+        
         List<Koko> koot = Arrays.asList(Koko.values());
         model.addAttribute("tuote", tuoteRepository.findById(tuoteId));
         model.addAttribute("valmistajat", vrepository.findAll());
@@ -236,6 +238,8 @@ public String save(@Valid @ModelAttribute Tuote tuote, BindingResult bindingResu
         model.addAttribute("koot", koot);
 
         return "muokkaatuote";
+
+        
     }
 
 }

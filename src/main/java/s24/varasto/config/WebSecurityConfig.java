@@ -43,13 +43,17 @@ public class WebSecurityConfig  {
 
 		http
 		
-		.csrf(csrf -> csrf.ignoringRequestMatchers(antMatcher("/api/users"))
+		.csrf(csrf -> csrf.disable()
 		)
 		.authorizeHttpRequests(authorize -> authorize
 		        .requestMatchers(antMatcher("/")).permitAll() 
 				.requestMatchers(antMatcher("/css/**")).permitAll()
 				.requestMatchers(antMatcher("/api/users/**")).permitAll()
-				.requestMatchers(HttpMethod.POST, "/api/users").permitAll()
+				.requestMatchers(antMatcher("/api/asiakases")).permitAll()
+				.requestMatchers(antMatcher("/api/asiakases/{id}")).permitAll()
+				.requestMatchers(antMatcher("/api/tuotes")).permitAll()
+				.requestMatchers(antMatcher("/api/tuotes/{id}")).permitAll()
+				.requestMatchers(antMatcher("/api/tilaukses")).permitAll()
 				.requestMatchers(antMatcher("/api/**")).permitAll()
 				.requestMatchers(antMatcher("/tuotteetrest")).permitAll()
 				.requestMatchers(antMatcher("/tuote/{id}")).permitAll()
