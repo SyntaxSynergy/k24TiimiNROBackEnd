@@ -87,7 +87,7 @@
                     <td th:text="${tilaus.tuote.nimi}"></td>
                     <td sec:authorize="hasAuthority('ADMIN')">
                         <a class="btn btn-danger" th:href="@{'/deletetilaus/' + ${tilaus.tilausid}}" onclick="confirmDelete(event)">Poista</a>
-                        <a class="btn btn-primary btn-custom" th:href="@{'/edittilaus/' + ${tilaus.tilausid}}">Muokkaa</a>
+                        <a class="btn btn-warning" th:href="@{'/edittilaus/' + ${tilaus.tilausid}}">Muokkaa</a>
                     </td>
                 </tr>
             </tbody>
