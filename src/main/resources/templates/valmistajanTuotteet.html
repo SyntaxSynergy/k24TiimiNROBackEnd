@@ -10,12 +10,14 @@
 </head>
 
 <body>
-    <div style="padding-right: 5%; padding-left: 5%; padding-top: 5%;">
+    <div style="padding: 5%;">
+        <!-- Title Section -->
         <div>
-            <h1 th:text="'Valmistajan ' + ${valmistaja.valmistajaNimi} + ' Tuotteet'"></h1>
+            <h1 th:text="'Valmistajan ' + ${valmistaja.valmistajaNimi} + ' tuotteet'"></h1>
         </div>
 
-        <div style="display: flex; justify-content: flex-end;">
+        <!-- Navigation Buttons -->
+        <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
             <div style="margin-right: 20px;">
                 <a class="btn btn-warning" href="/valmistajat">Takaisin valmistajalistaukseen</a>
             </div>
@@ -24,8 +26,8 @@
             </div>
         </div>
 
-
-        <div style="padding-left: 5%; padding-right: 5%; padding-top: 2%;">
+        <!-- Table of Products -->
+        <div style="padding-top: 2%;">
             <table class="table pink-table table-hover" style="margin: 0 auto;">
                 <thead>
                     <tr>
@@ -42,7 +44,7 @@
                         <td th:text="${tuote.tyyppi.tyyppiNimi}"></td>
                         <td th:text="${tuote.vari}"></td>
                         <td th:text="${tuote.koko}"></td>
-                        <td th:text="${tuote.hinta}"></td>
+                        <td th:text="${tuote.hinta} + ' €'"></td>
                     </tr>
                 </tbody>
             </table>
