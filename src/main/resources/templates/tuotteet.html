@@ -55,7 +55,7 @@
             <div style="width: 100%;">
                 <form th:object="${tuote}" th:action="@{save}" action="#" method="post" style="display: flex; gap: 9px; align-items: center; flex-wrap: wrap; flex-direction: row;">
                     <label for="title">Nimi</label>
-                    <input type="text" id="title" th:field="*{nimi}" />
+                    <input type="text" id="title" class="pink-input" th:field="*{nimi}" />
                     <span th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}"></span>
                     
                     <label for="tyyppi">Tyyppi</label>
@@ -65,7 +65,7 @@
                     <span th:if="${#fields.hasErrors('tyyppi')}" th:errors="*{tyyppi}"></span>
 
                     <label for="vari">Väri</label>
-                    <input type="text" id="author" th:field="*{vari}" />
+                    <input type="text" id="author" class="pink-input" th:field="*{vari}" />
                     <span th:if="${#fields.hasErrors('vari')}" th:errors="*{vari}"></span>
                     
 
@@ -74,7 +74,7 @@
                     <span th:if="${#fields.hasErrors('hinta')}" th:errors="*{hinta}"></span>
 
                     <label for="varastossa">Varastossa</label>
-                    <input type="text" th:field="*{varastomaara}" />
+                    <input type="text" th:field="*{varastomaara}" class="pink-input" />
                     <span th:if="${#fields.hasErrors('varastomaara')}" th:errors="*{varastomaara}"></span>
 
                     <label for="valmistaja">Valmistaja</label>
@@ -90,7 +90,7 @@
                         </select>
                         <span th:if="${#fields.hasErrors('koko')}" th:errors="*{koko}"></span>
                     </div>
-                    <input type="submit" value="Save" />
+                    <input type="submit" value="Save" class="pink-input"/>
                    
                 </form>
             </div>
