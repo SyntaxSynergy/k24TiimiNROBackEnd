@@ -28,6 +28,7 @@ body {
 .blended-border {
     width: 100%;
     margin-top: -5px;
+    height: 80%;
     box-shadow: 0 0 15px 5px rgba(244, 192, 204, 0.5); /* Soft pink shadow */
 }
 
