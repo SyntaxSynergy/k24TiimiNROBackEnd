@@ -25,11 +25,5 @@ body {
     border-radius: 5px;
     padding: 5px 10px;
 }
-.blended-border {
-    width: 100%;
-    margin-top: -10px;
-    max-height: 300px; /* Limits the height */
-    box-shadow: 0 0 15px 5px rgba(244, 192, 204, 0.5); /* Soft pink shadow */
-}
 
 
