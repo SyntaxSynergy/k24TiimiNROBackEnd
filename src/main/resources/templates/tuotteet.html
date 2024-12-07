@@ -123,8 +123,8 @@
                     <td th:text="${tuote.varastomaara}"></td>
                     <td th:text="${tuote.valmistaja}"></td>
                     <td sec:authorize="hasAuthority('ADMIN')">
-                        <a class="btn btn-warning rounded-pill" th:href="@{/edit/{id}(id=${tuote.tuoteId})}">Muokkaa</a>
-                        <a class="btn btn-secondary rounded-pill" href="#" th:href="@{/delete/{id}(id=${tuote.tuoteId})}" onclick="confirmDelete(event)">Poista</a>
+                        <a class="btn btn-danger rounded-pill" th:href="@{/edit/{id}(id=${tuote.tuoteId})}">Muokkaa</a>
+                        <a class="btn btn-warning rounded-pill" href="#" th:href="@{/delete/{id}(id=${tuote.tuoteId})}" onclick="confirmDelete(event)">Poista</a>
                     </td>
                 </tr>
             </tbody>
