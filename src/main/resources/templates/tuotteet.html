@@ -54,7 +54,7 @@
             <div style="width: 100%;">
                 <form th:object="${tuote}" th:action="@{save}" action="#" method="post" style="display: flex; gap: 9px; align-items: center; flex-wrap: wrap; flex-direction: row;">
                     <label for="title">Nimi</label>
-                    <input type="text" id="title" th:field="*{nimi}" class="form-control rounded-pill w-auto" />
+                    <input type="text" id="title" th:field="*{nimi}" class="form-control rounded-pill" />
                     <span th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}"></span>
 
                     <label for="tyyppi">Tyyppi</label>
