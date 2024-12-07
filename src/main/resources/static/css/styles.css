@@ -11,6 +11,7 @@ body {
 
 .btn-custom:hover {
     background-color: #231492b7;
+    color: #00000000;
 }
 
 table {
