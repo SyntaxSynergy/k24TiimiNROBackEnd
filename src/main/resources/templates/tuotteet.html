@@ -39,7 +39,7 @@
             document.getElementById("tyyppiSelect").addEventListener("change", toggleKokoField); 
         });
     </script>
-    
+
 <style>
     .pink-table {
         background-color: #ffe4e1;
@@ -144,8 +144,8 @@
                     <td th:text="${tuote.varastomaara}"></td>
                     <td th:text="${tuote.valmistaja}"></td>
                     <td sec:authorize="hasAuthority('ADMIN')">
-                        <a class="btn btn-warning rounded-pill" th:href="@{/edit/{id}(id=${tuote.tuoteId})}">Muokkaa</a>
-                        <a class="btn btn-danger rounded-pill" href="#" th:href="@{/delete/{id}(id=${tuote.tuoteId})}" onclick="confirmDelete(event)">Poista</a>
+                        <a class="btn btn-warning" th:href="@{/edit/{id}(id=${tuote.tuoteId})}">Muokkaa</a>
+                        <a class="btn btn-danger" href="#" th:href="@{/delete/{id}(id=${tuote.tuoteId})}" onclick="confirmDelete(event)">Poista</a>
                     </td>
                 </tr>
             </tbody>
