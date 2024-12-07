@@ -1,71 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" 
+xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+<link rel="stylesheet" href="/css/styles.css">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muokkaa asiakasta</title>
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
-    <link rel="stylesheet" href="/css/styles.css">
-
-    <style>
-        .pink-input {
-            background-color: #ffe4e1;
-            border: 1px solid #ffccd5;
-            border-radius: 4px;
-            padding: 5px;
-            width: 100%;
-            margin-bottom: 10px;
-        }
-
-        .pink-input:focus {
-            border-color: #ffccd5;
-            box-shadow: 0 0 5px rgba(255, 192, 203, 0.5);
-        }
-
-        .error {
-            color: #d9534f;
-        }
-    </style>
 </head>
-
 <body>
     <h1>Asiakkaan tietojen muokkaus</h1>
     <form th:object="${asiakas}" th:action="@{../savea}" action="#" method="post">
         <label for="id"></label>
-        <input type="hidden" id="id" th:field="*{asiakasid}" class="pink-input" readonly="readonly" />
+        <input type="hidden" id="id" th:field="*{asiakasid}" readonly="readonly" />
 
         <label for="sukunimi">Sukunimi</label>
-        <input type="text" th:field="*{sukunimi}" class="pink-input" />
+        <input type="text" th:field="*{sukunimi}" class="pink-input"/>
         <div class="error" th:if="${#fields.hasErrors('sukunimi')}" th:errors="*{sukunimi}"></div>
 
         <label for="etunimi">Etunimi</label>
-        <input type="text" th:field="*{etunimi}" class="pink-input" />
+        <input type="text" th:field="*{etunimi}" class="pink-input"/>
         <div class="error" th:if="${#fields.hasErrors('etunimi')}" th:errors="*{etunimi}"></div>
 
         <label for="puhelinnumero">Puhelinnumero</label>
-        <input type="text" th:field="*{puhelinnumero}" class="pink-input" />
+        <input type="text" th:field="*{puhelinnumero}" class="pink-input"/>
         <div class="error" th:if="${#fields.hasErrors('puhelinnumero')}" th:errors="*{puhelinnumero}"></div>
 
         <label for="sahkoposti">Sähköposti</label>
-        <input type="text" th:field="*{sahkoposti}" class="pink-input" />
+        <input type="text" th:field="*{sahkoposti}" class="pink-input"/>
         <div class="error" th:if="${#fields.hasErrors('sahkoposti')}" th:errors="*{sahkoposti}"></div>
 
         <label for="katuosoite">Katuosoite</label>
-        <input type="text" th:field="*{katuosoite}" class="pink-input" />
+        <input type="text" th:field="*{katuosoite}" class="pink-input"/>
         <div class="error" th:if="${#fields.hasErrors('katuosoite')}" th:errors="*{katuosoite}"></div>
 
         <label for="postinumero">Postinumero</label>
-        <input type="text" th:field="*{postinumero}" class="pink-input" />
+        <input type="text" th:field="*{postinumero}" class="pink-input"/>
         <div class="error" th:if="${#fields.hasErrors('postinumero')}" th:errors="*{postinumero}"></div>
 
         <label for="postitoimipaikka">Postitoimipaikka</label>
-        <input type="text" th:field="*{postitoimipaikka}" class="pink-input" />
+        <input type="text" th:field="*{postitoimipaikka}" class="pink-input"/>
         <div class="error" th:if="${#fields.hasErrors('postitoimipaikka')}" th:errors="*{postitoimipaikka}"></div>
 
-        <input type="submit" class="btn btn-primary btn-custom value="Save">
+        <input type="submit" class="btn btn-primary btn-custom " value="Save"></input>
     </form>
     <a class="btn btn-primary btn-custom" href="/asiakkaat">Takaisin asiakkaisiin</a>
 </body>
-
-</html>
+</html> 
