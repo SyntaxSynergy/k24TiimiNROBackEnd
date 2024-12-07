@@ -25,15 +25,26 @@ body {
     border-radius: 5px;
     padding: 5px 10px;
 }
-.blend-container {
-    background-color: #f4c0cc; /* Light pink background */
-    padding: 20px;
-    display: flex;
-    justify-content: center;
+.image-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.blend-image {
+.blended-image {
     width: 100%;
     height: auto;
-    mix-blend-mode: multiply; /* Experiment with different modes like overlay, screen, etc. */
+    opacity: 0.8; /* Adjust opacity for blending */
+    display: block;
 }
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 182, 193, 0.5); /* Pink color with transparency */
+}
+
