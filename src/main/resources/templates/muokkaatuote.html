@@ -38,12 +38,12 @@ xmlns:th="http://www.thymeleaf.org">
         <input type="hidden" id="id" th:field="*{tuoteId}" readonly="readonly" />
 
         <label for="nimi">Nimi</label>
-        <input type="text" th:field="*{nimi}" />
+        <input type="text" class="pink-input" th:field="*{nimi}" />
         <div class="error" th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}"></div>
 
 
         <label for="tyyppi">Tyyppi</label>
-        <select  id="tyyppiSelect" th:field="*{tyyppi}">
+        <select  id="tyyppiSelect" th:field="*{tyyppi}" class="pink-input">
             <option th:each="tyyppi : ${tuotetyypit}" 
                     th:value="${tyyppi.tyyppiId}" 
                     th:text="${tyyppi.tyyppiNimi}"></option>
@@ -53,12 +53,12 @@ xmlns:th="http://www.thymeleaf.org">
         
 
         <label for="vari">Väri</label>
-        <input type="text" th:field="*{vari}" />
+        <input type="text" th:field="*{vari}" class="pink-input"/>
         <div class="error" th:if="${#fields.hasErrors('vari')}" th:errors="*{vari}"></div>
 
         <div style="display: flex;"id="kokoField"  >
         <label for="koko">Koko</label>
-        <select th:field="*{koko}">
+        <select th:field="*{koko}" class="pink-input">
             <option th:each="koko : ${koot}" th:value="${koko}" th:text="${koko}"></option>
         </select>
         <div class="error" th:if="${#fields.hasErrors('koko')}" th:errors="*{koko}"></div>
@@ -66,24 +66,24 @@ xmlns:th="http://www.thymeleaf.org">
         
 
         <label for="hinta">Hinta</label>
-        <input type="text" th:field="*{hinta}" />
+        <input type="text" th:field="*{hinta}" class="pink-input"/>
         <div class="error" th:if="${#fields.hasErrors('hinta')}" th:errors="*{hinta}"></div>
 
 
         <label for="varastossa">Varastossa</label>
-        <input type="text" th:field="*{varastomaara}" />
+        <input type="text" th:field="*{varastomaara}" class="pink-input rounded-pill"/>
         <div class="error" th:if="${#fields.hasErrors('varastomaara')}" th:errors="*{varastomaara}"></div>
 
 
         <label for="valmistaja">Valmistaja</label>
-        <select th:field="*{valmistaja}">
+        <select th:field="*{valmistaja}" class="pink-input">
             <option th:each="valmistaja : ${valmistajat}" th:value="${valmistaja.valmistajaId}" th:text="${valmistaja.valmistajaNimi}"></option>
         </select>
         <div class="error" th:if="${#fields.hasErrors('valmistaja')}" th:errors="*{valmistaja}"></div>
 
 
-        <input type="submit" class="btn btn-success" value="Save"></input>
+        <input type="submit" class="pink-input" value="Save"></input>
     </form>
-    <a href="/tuotteet">Takaisin tuotelistaukseen</a>
+    <a class="btn btn-primary btn-custom href="/tuotteet">Takaisin tuotelistaukseen</a>
 </body>
 </html>
