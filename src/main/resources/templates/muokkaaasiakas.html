@@ -63,9 +63,9 @@
         <input type="text" th:field="*{postitoimipaikka}" class="pink-input" />
         <div class="error" th:if="${#fields.hasErrors('postitoimipaikka')}" th:errors="*{postitoimipaikka}"></div>
 
-        <input type="submit" class="btn btn-success" value="Save">
+        <input type="submit" class="btn btn-primary btn-custom value="Save">
     </form>
-    <a href="/asiakkaat">Takaisin asiakkaisiin</a>
+    <a class="btn btn-primary btn-custom" href="/asiakkaat">Takaisin asiakkaisiin</a>
 </body>
 
 </html>
