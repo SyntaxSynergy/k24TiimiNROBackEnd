@@ -59,7 +59,7 @@
                     <span th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}"></span>
                     
                     <label for="tyyppi">Tyyppi</label>
-                    <select id="tyyppiSelect" th:field="*{tyyppi}">
+                    <select id="tyyppiSelect" class="pink-input" th:field="*{tyyppi}">
                         <option th:each="tyyppi : ${tuotetyypit}" th:value="${tyyppi.tyyppiId}" th:text="${tyyppi.tyyppiNimi}"></option>
                     </select>
                     <span th:if="${#fields.hasErrors('tyyppi')}" th:errors="*{tyyppi}"></span>
@@ -70,7 +70,7 @@
                     
 
                     <label for="hinta">Hinta</label>
-                    <input type="text" th:field="*{hinta}" />
+                    <input type="text" class="pink-input" th:field="*{hinta}" />
                     <span th:if="${#fields.hasErrors('hinta')}" th:errors="*{hinta}"></span>
 
                     <label for="varastossa">Varastossa</label>
@@ -78,14 +78,14 @@
                     <span th:if="${#fields.hasErrors('varastomaara')}" th:errors="*{varastomaara}"></span>
 
                     <label for="valmistaja">Valmistaja</label>
-                    <select th:field="*{valmistaja}">
+                    <select th:field="*{valmistaja}" class="pink-input">
                         <option th:each="valmistaja : ${valmistajat}" th:value="${valmistaja.valmistajaId}" th:text="${valmistaja.valmistajaNimi}"></option>
                     </select>
                     <span th:if="${#fields.hasErrors('valmistaja')}" th:errors="*{valmistaja}"></span>
 
                     <div style="display: flex;"id="kokoField"  >
                         <label id="kokoField" for="koko">Koko</label>
-                        <select th:field="*{koko}">
+                        <select th:field="*{koko}" class="pink-input">
                             <option th:each="koko : ${koot}" th:value="${koko}" th:text="${koko}"></option>
                         </select>
                         <span th:if="${#fields.hasErrors('koko')}" th:errors="*{koko}"></span>
@@ -104,7 +104,7 @@
     </div>
 
     <div style="padding-left: 5%; padding-right: 5%; padding-top: 2%;">
-        <table class="table pink-table table-hover" style="margin: 0 auto;">
+        <table class="table table-hover" style="margin: 0 auto; color: pink;">
             <thead>
                 <tr>
                     <th>Nimi</th>
