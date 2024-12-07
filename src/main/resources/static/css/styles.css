@@ -8,3 +8,11 @@ body {
     border-radius: 50px;
     color: #000000;
 }
+
+.btn-custom:hover {
+    background-color: #231492b7;
+}
+
+table {
+
+}
