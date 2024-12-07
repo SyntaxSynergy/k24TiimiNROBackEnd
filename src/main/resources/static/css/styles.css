@@ -1,5 +1,5 @@
 body {
-    background-color: #ed789ab1;
+    background-color: #ebb5c3;
     
 }
 .btn-primary {
@@ -24,4 +24,7 @@ body {
     color: black;
     border-radius: 5px;
     padding: 5px 10px;
+}
+img{
+    max-height: 80%;
 }
