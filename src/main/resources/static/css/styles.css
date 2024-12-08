@@ -3,14 +3,32 @@ body {
     
 }
 .btn-primary {
-    background-color: #3573b693;
-    border-color: #000000;
+
+    border: none;
+
+    background-color: #b94d5993;
+
     border-radius: 50px;
-    color: #000000;
+
+    color: #371111;
+}
+
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+
+    margin-top: 0;
+
+    margin-bottom: .5rem;
+
+    font-weight: 500;
+
+    line-height: 1.2;
+
+    color: #8d4545;
 }
 
 .btn-custom:hover {
-    background-color: #231492b7;
+    background-color: #520505ea;
 }
 
 .pink-table {
