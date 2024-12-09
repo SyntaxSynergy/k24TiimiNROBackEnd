@@ -68,7 +68,7 @@ public class WebSecurityConfig  {
 		)
 		.formLogin(formlogin -> formlogin
 				.loginPage("/login")
-				.defaultSuccessUrl("/index", true)
+				.defaultSuccessUrl("/index", true) //Menee index sivulle kun login on suoritettu
 				.permitAll()
 		)
 		.logout(logout -> logout
