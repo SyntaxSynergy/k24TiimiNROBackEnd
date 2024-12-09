@@ -20,7 +20,7 @@ private Long valmistajaId;
 private String valmistajaNimi;
 
   @JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "valmistaja")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "valmistaja") //Yhdistää valmistajan tuotteisiin
 	private List<Tuote> tuotteet;
 
 

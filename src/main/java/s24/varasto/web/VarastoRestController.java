@@ -23,22 +23,22 @@ public class VarastoRestController {
     @Autowired
     private ValmistajaRepository valRepository;
 
-    @GetMapping("/tuotteetrest")
+    @GetMapping("/tuotteetrest") // Tuotelistauksen RESTendpointti.
     public @ResponseBody List<Tuote> tuotelistausRest() {
         return (List<Tuote>) tuoteRepository.findAll();
     }
 
-    @GetMapping("/tuote/{id}")
+    @GetMapping("/tuote/{id}") // Tuotteen RESTendpointti id:n perusteella.
     public @ResponseBody Tuote findTuoteRest(@PathVariable("id") Long tuoteId) {
         return tuoteRepository.findById(tuoteId).get();
     }
 
-    @GetMapping("/valmistajatrest")
+    @GetMapping("/valmistajatrest") // Valmistajalistaus RESTendpointti.
     public @ResponseBody List<Valmistaja> valmistajalistausRest() {
         return (List<Valmistaja>) valRepository.findAll();
     }
 
-    @GetMapping("/valmistaja/{id}")
+    @GetMapping("/valmistaja/{id}") // Valmistajan RESTendpointti id:n perusteella.
     public @ResponseBody Valmistaja findValmistajaRest(@PathVariable("id") Long valmistajaId) {
         return valRepository.findById(valmistajaId).get();
     }

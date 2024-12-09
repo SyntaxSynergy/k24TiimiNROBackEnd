@@ -51,13 +51,12 @@ public class VarastoController {
         return "login";
     }
 
-
     @GetMapping("/index")
     public String index() {
         return "index";
     }
 
-    @GetMapping("/tuotteet")
+    @GetMapping("/tuotteet") // Tuotelistaus ja tuotteen luonnin endpointti.
     @PreAuthorize("hasAuthority('ADMIN')")
     public String uusiTuote(Model model) {
         // localhost:8080/varasto <-- Linkki kyseiseen sivuun :D
@@ -70,7 +69,7 @@ public class VarastoController {
         return "tuotteet";
     }
 
-    @GetMapping("/valmistajat")
+    @GetMapping("/valmistajat") // Valmistajalistaus ja valmistajan luonnin endpointti.
     @PreAuthorize("hasAuthority('ADMIN')")
     public String uusiValmistaja(Model model) {
         model.addAttribute("valmistaja", new Valmistaja());
@@ -80,7 +79,7 @@ public class VarastoController {
         return "valmistajat";
     }
 
-    @GetMapping("/asiakkaat")
+    @GetMapping("/asiakkaat") // Asiakaslistaus ja asiakkaan luonnin endpointti.
     @PreAuthorize("hasAuthority('ADMIN')")
     public String asiakkaat(Model model) {
         model.addAttribute("asiakas", new Asiakas());
@@ -88,7 +87,7 @@ public class VarastoController {
         return "asiakkaat";
     }
 
-    @PostMapping("/savea")
+    @PostMapping("/savea") // Tallentaa asiakkaan
     @PreAuthorize("hasAuthority('ADMIN')")
     public String saveAsiakas(@Valid @ModelAttribute Asiakas asiakas, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
@@ -100,7 +99,7 @@ public class VarastoController {
         return "redirect:asiakkaat";
     }
 
-    @GetMapping("/tilaukset")
+    @GetMapping("/tilaukset") // Tilauksien listaus ja tilauksen luonnin endpointti.
     @PreAuthorize("hasAuthority('ADMIN')")
     public String tilaukset(Model model) {
         model.addAttribute("tilaus", new Tilaus());
@@ -110,7 +109,7 @@ public class VarastoController {
         return "tilaukset";
     }
 
-    @PostMapping("/savet")
+    @PostMapping("/savet") // Tallentaa tilauksen
     @PreAuthorize("hasAuthority('ADMIN')")
     public String saveTilaus(@Valid @ModelAttribute Tilaus tilaus, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
@@ -125,7 +124,7 @@ public class VarastoController {
         return "redirect:tilaukset";
     }
 
-    @GetMapping("/valmistajanTuotteet/{id}")
+    @GetMapping("/valmistajanTuotteet/{id}") // Valmistajan tuotteiden listaus id:n perusteella
     @PreAuthorize("hasAuthority('ADMIN')")
     public String valmistajanTuotteet(@PathVariable("id") Long valmistajaId, Model model) {
         Valmistaja valmistaja = vrepository.findById(valmistajaId)
@@ -138,7 +137,7 @@ public class VarastoController {
         return "valmistajanTuotteet";
     }
 
-    @PostMapping("/saveval")
+    @PostMapping("/saveval") // Tallentaa valmistajan
     @PreAuthorize("hasAuthority('ADMIN')")
     public String saveValmistaja(@Valid @ModelAttribute Valmistaja valmistaja, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()){
@@ -150,49 +149,49 @@ public class VarastoController {
         return "redirect:valmistajat";
     }
 
-    @PostMapping("/save")
-@PreAuthorize("hasAuthority('ADMIN')")
-public String save(@Valid @ModelAttribute Tuote tuote, BindingResult bindingResult, Model model) {
-    if (bindingResult.hasErrors()) {
-        model.addAttribute("tuote", tuote); //lataa takas tyypit koot jne
-        model.addAttribute("tuotteet", tuoteRepository.findAll()); 
-        model.addAttribute("valmistajat", vrepository.findAll()); 
-        model.addAttribute("tuotetyypit", tuotetyyppiRepository.findAll()); 
-        model.addAttribute("koot", Arrays.asList(Koko.values())); 
+    @PostMapping("/save") // Tallentaa tuotteen, ja tarkistaa onko tuote lelu tai ruoka, jolloin se ei tarvitse kokoa.
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String save(@Valid @ModelAttribute Tuote tuote, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("tuote", tuote); //lataa takas tyypit koot jne
+            model.addAttribute("tuotteet", tuoteRepository.findAll()); 
+            model.addAttribute("valmistajat", vrepository.findAll()); 
+            model.addAttribute("tuotetyypit", tuotetyyppiRepository.findAll()); 
+            model.addAttribute("koot", Arrays.asList(Koko.values())); 
 
-        return "tuotteet"; 
-    }
-    if ("LELU".equals(tuote.getTyyppi().getTyyppiNimi()) || 
-        "RUOKA".equals(tuote.getTyyppi().getTyyppiNimi())) {
-        tuote.setKoko(null); // LELU tai RUOKA ei tarvitse kokoa
+            return "tuotteet"; 
+        }
+        if ("LELU".equals(tuote.getTyyppi().getTyyppiNimi()) || 
+            "RUOKA".equals(tuote.getTyyppi().getTyyppiNimi())) {
+            tuote.setKoko(null); // LELU tai RUOKA ei tarvitse kokoa
         }
         tuoteRepository.save(tuote);
 
         return "redirect:tuotteet";
     }
 
-    @GetMapping("/deleteasiakas/{id}")
+    @GetMapping("/deleteasiakas/{id}") // Poistaa asiakkaan id:n perusteella
     @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteAsiakas(@PathVariable("id") Long asiakasid, Model model) {
         arepository.deleteById(asiakasid);
         return "redirect:../asiakkaat";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/delete/{id}") // Poistaa tuotteen id:n perusteella
     @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteTuote(@PathVariable("id") Long tuoteId, Model model) {
         tuoteRepository.deleteById(tuoteId);
         return "redirect:../tuotteet";
     }
 
-    @GetMapping("/deletevalmistaja/{id}")
+    @GetMapping("/deletevalmistaja/{id}") // Poistaa valmistajan id:n perusteella
     @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteValmistaja(@PathVariable("id") Long valmistajaId, Model model) {
         vrepository.deleteById(valmistajaId);
         return "redirect:../valmistajat";
     }
 
-    @GetMapping("/deleteEmptyvalmistajat")
+    @GetMapping("/deleteEmptyvalmistajat") // Poistaa valmistajat, joilla ei ole tuotteita
     @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteEmptyValmistajat() {
         List<Valmistaja> valmistajat = (List<Valmistaja>) vrepository.findAll();
@@ -204,14 +203,14 @@ public String save(@Valid @ModelAttribute Tuote tuote, BindingResult bindingResu
         return "redirect:/valmistajat";
     }
 
-    @GetMapping("/deletetilaus/{id}")
+    @GetMapping("/deletetilaus/{id}") // Poistaa tilauksen id:n perusteella
     @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteTilaus(@PathVariable("id") Long tilausid, Model model) {
         trepository.deleteById(tilausid);
         return "redirect:../tilaukset";
     }
 
-    @GetMapping("/edittilaus/{id}")
+    @GetMapping("/edittilaus/{id}") // Muokkaa tilausta id:n perusteella
     @PreAuthorize("hasAuthority('ADMIN')")
     public String editTilaus(@PathVariable("id") Long tilausid, Model model) {
         model.addAttribute("tilaus", trepository.findById(tilausid));
@@ -220,14 +219,14 @@ public String save(@Valid @ModelAttribute Tuote tuote, BindingResult bindingResu
         return "muokkaatilaus";
     }
 
-    @GetMapping("/editasiakas/{id}")
+    @GetMapping("/editasiakas/{id}") // Muokkaa asiakasta id:n perusteella
     @PreAuthorize("hasAuthority('ADMIN')")
     public String editAsiakas(@PathVariable("id") Long asiakasid, Model model) {
         model.addAttribute("asiakas", arepository.findById(asiakasid));
         return "muokkaaasiakas";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/edit/{id}") // Muokkaa tuotetta id:n perusteella
     @PreAuthorize("hasAuthority('ADMIN')")
     public String editTuote(@PathVariable("id") Long tuoteId, Model model) {
         
@@ -238,8 +237,6 @@ public String save(@Valid @ModelAttribute Tuote tuote, BindingResult bindingResu
         model.addAttribute("koot", koot);
 
         return "muokkaatuote";
-
-        
     }
 
 }

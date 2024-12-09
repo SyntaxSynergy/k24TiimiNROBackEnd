@@ -10,12 +10,12 @@ public class Tilaus {
     private Long tilausid;
 
     @ManyToOne
-    @JoinColumn(name = "asiakasid")
+    @JoinColumn(name = "asiakasid") //Yhdistää asiakkaan tilaukseen asiakasid:llä
     @NotNull
     private Asiakas asiakas;
 
     @ManyToOne
-    @JoinColumn(name = "tuoteid")
+    @JoinColumn(name = "tuoteid") //Yhdistää tuotteen tilaukseen tuoteid:llä
     @NotNull
     private Tuote tuote;
 
@@ -29,7 +29,7 @@ public class Tilaus {
     }
 
     @PrePersist
-    private void reduceQuantity() {
+    private void reduceQuantity() { //Vähentää tuotteen varastomäärää yhdellä aina kun liitetään tilaukseen.
         if (tuote != null) {
             tuote.setVarastomaara(tuote.getVarastomaara() - 1);
         }
