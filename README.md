@@ -1,3 +1,6 @@
+# Päivitys 07.01.25
+Omppu ja Ranen sovelluksen Herokun live-tila on tilapäisesti suljettu.
+
 # Omppu ja Rane- Lemmikkitarvikekaupan Backend
 
 Lemmikkitarvikekaupan backend-projekti, joka on rakennettu Spring Bootilla. Sovellus hallitsee tuotteiden, asiakkaiden, tilausten ja valmistajien tietoja ja toimii lemmikkitarvikekaupan taustalla.
